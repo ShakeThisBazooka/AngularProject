@@ -14,6 +14,7 @@ import { FindAJobComponent } from './components/find-a-job/find-a-job.component'
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     sharedRouting,
     MdSidenavModule,
     MdMenuModule,
@@ -23,7 +24,7 @@ import { FindAJobComponent } from './components/find-a-job/find-a-job.component'
     Md2Module
   ],
   exports: [
-    HomeComponent
+    HeaderComponent, FooterComponent
   ],
   declarations: [HomeComponent, SharedDashboardComponent, HeaderComponent, FooterComponent, FindAJobComponent]
 })

@@ -13,16 +13,10 @@ const sharedRoutes: Routes = [
     children: [
       {path: "", redirectTo: "home", pathMatch: 'full'},
       {path: "home", component: HomeComponent},
-      {path:"jobs", component:FindAJobComponent}
+      {path: "jobs", component: FindAJobComponent}
     ]
   }
 ];
 
-// @NgModule({
-//   imports: [
-//     RouterModule.forRoot(routes)
-//   ],
-//   exports: [ RouterModule ]
-// })
 export const sharedRouting = RouterModule.forChild(sharedRoutes);
 

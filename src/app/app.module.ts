@@ -1,9 +1,10 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+import {CommonModule} from '@angular/common';
 import {AppComponent} from './app.component';
 import {appRouting} from './app.routing';
 import {SharedModule} from './shared/shared.module';
+import { RouterModule } from '@angular/router';
 // import {MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule} from '@angular/material';
 
 @NgModule({
@@ -14,6 +15,7 @@ import {SharedModule} from './shared/shared.module';
     BrowserModule,
     appRouting,
     SharedModule,
+    RouterModule,
     // MdSidenavModule,
     // MdMenuModule,
     // MdInputModule,
