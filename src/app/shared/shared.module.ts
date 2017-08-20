@@ -8,6 +8,7 @@ import {HeaderComponent} from './components/partial/header/header.component';
 import {FooterComponent} from './components/partial/footer/footer.component'
 import {MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule} from '@angular/material';
 import {Md2Module} from 'md2';
+import { FindAJobComponent } from './components/find-a-job/find-a-job.component';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import {Md2Module} from 'md2';
   exports: [
     HomeComponent
   ],
-  declarations: [HomeComponent, SharedDashboardComponent, HeaderComponent, FooterComponent]
+  declarations: [HomeComponent, SharedDashboardComponent, HeaderComponent, FooterComponent, FindAJobComponent]
 })
 export class SharedModule {
 }
