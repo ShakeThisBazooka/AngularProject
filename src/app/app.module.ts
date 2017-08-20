@@ -3,9 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {appRouting} from './app.routing';
-import {SharedModule} from './shared/shared.module';
-
-// import {SharedModule} from './shared/shared.module';
+ // import {SharedModule} from './shared/shared.module';
 // import {MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule} from '@angular/material';
 
 @NgModule({
@@ -15,7 +13,6 @@ import {SharedModule} from './shared/shared.module';
   imports: [
     BrowserModule,
     appRouting,
-    SharedModule
     // MdSidenavModule,
     // MdMenuModule,
     // MdInputModule,
