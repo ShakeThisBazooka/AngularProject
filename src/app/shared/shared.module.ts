@@ -1,21 +1,18 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HomeComponent} from './components/home/home.component';
-import {SharedDashboardComponent} from './shared-dashboard.component';
 import {RouterModule} from '@angular/router';
-import {sharedRouting} from './shared.routing';
 import {HeaderComponent} from './components/partial/header/header.component';
 import {FooterComponent} from './components/partial/footer/footer.component'
 import {MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule} from '@angular/material';
 import {Md2Module} from 'md2';
-import { FindAJobComponent } from './components/find-a-job/find-a-job.component';
+import { DashboardComponent } from 'app/shared/dashboard.component';
+import { SideNavComponent } from 'app/shared/components/partial/side-nav/side-nav.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    sharedRouting,
     MdSidenavModule,
     MdMenuModule,
     MdInputModule,
@@ -24,9 +21,9 @@ import { FindAJobComponent } from './components/find-a-job/find-a-job.component'
     Md2Module
   ],
   exports: [
-    HeaderComponent, FooterComponent
+    HeaderComponent, FooterComponent, SideNavComponent, DashboardComponent
   ],
-  declarations: [HomeComponent, SharedDashboardComponent, HeaderComponent, FooterComponent, FindAJobComponent]
+  declarations: [DashboardComponent, HeaderComponent, FooterComponent, SideNavComponent]
 })
 export class SharedModule {
 }
