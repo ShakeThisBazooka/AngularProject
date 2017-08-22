@@ -17,7 +17,8 @@ const usersController = (data) => {
       const user = {
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        info: 'No profile info!'
       };
 
       return data.users.create(user)
@@ -47,6 +48,7 @@ const usersController = (data) => {
             .status(200)
             .json({
               name: req.user.name,
+              id: req.user._id,
               msg: 'You are logged in!'
             });
         });
