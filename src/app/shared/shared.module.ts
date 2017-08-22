@@ -21,7 +21,7 @@ import { SideNavComponent } from 'app/shared/components/partial/side-nav/side-na
     Md2Module
   ],
   exports: [
-    HeaderComponent, FooterComponent, SideNavComponent
+    HeaderComponent, FooterComponent, SideNavComponent, DashboardComponent
   ],
   declarations: [DashboardComponent, HeaderComponent, FooterComponent, SideNavComponent]
 })
