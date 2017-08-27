@@ -1,0 +1,5 @@
+//1 JOBS {{TITLE,Description,companyInfo,Requirements,Benefits}} - Vlado + da premestq chovecheto
+//2 JOBS Searhing Engine {{TOWN,category,Type(PT,FT)}}
+//3 Register((Users=>(Username,FullName,Email,Password),Company=>(CompanyName,Email,Password,VatNumber,CompanyField)
+
+
