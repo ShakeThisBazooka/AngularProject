@@ -1,7 +1,34 @@
-<div class="header-component">
-  <md-toolbar color="primary">
-    <a href="">Home</a>
-    <a href="/login" class="mainInfo">Login</a>
-  </md-toolbar>
-</div>
+ <!-- <md-toolbar>
+  <a [routerLink]="['/']">Home</a>
+  <div class="user-info" *ngIf="isLoggedIn == false">
+    <a [routerLink]="['/auth/register']">Register</a>
+    <a [routerLink]="['/auth/login']">Login</a>
+  </div>
+  <div class="user-info" *ngIf="isLoggedIn == true">
+     <a [routerLink]="['/profile']">{{ currentUser }}</a> 
+    <a (click)="logout()">Logout</a>
+  </div>
+</md-toolbar>  -->
+ <md-toolbar class="main-header" color="primary">
+    <div class="branding">
+      PluggingAway
+    </div>
+    <button class="user-info" [md-menu-trigger-for]="user" md-icon-button class="ml-xs">
+      <md-icon>person</md-icon>
+    </button>
+    <md-menu #user="mdMenu" x-position="before">
+      <button *ngIf="isLoggedIn" md-menu-item>
+        <md-icon>account_box</md-icon>
+        Profile
+      </button>
+      <button *ngIf="isLoggedIn" md-menu-item (click)="logout()">
+        <md-icon>exit_to_app</md-icon>
+        Sign Out
+      </button>
+      <button *ngIf="!isLoggedIn" md-menu-item [routerLink]="['/auth/login']">
+        <md-icon>input</md-icon>
+        Login
+      </button>
+    </md-menu>
+  </md-toolbar> 
 

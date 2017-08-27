@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'app/shared/shared.module';
-import { applicantRouting } from 'app/applicant/applicant.routes';
-import { ApplicantGuard } from 'app/applicant/guards/applicant.guard';
+import { SharedModule } from '../shared/shared.module';
+import { applicantRouting } from './applicant.routes';
+import { ApplicantGuard } from './guards/applicant.guard';
+
 
 @NgModule({
   imports: [

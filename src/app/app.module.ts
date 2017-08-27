@@ -1,48 +1,40 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdToolbarModule, MdCardModule } from '@angular/material';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AppComponent} from './app.component';
+import {SharedModule} from './shared/shared.module';
 import { RouterModule } from '@angular/router';
-
-import { HomeModule } from './home/home.module';
-import { UsersModule } from './users/users.module';
-
-import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-
+import { appRouting } from './app.routes';
+import { HomeService } from './shared/services/home.service';
+import { AuthService } from './shared/services/auth.service';
+import { UserService } from './shared/services/user.service';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from './services/auth.service';
-import { UserService } from './services/user.service';
-import { HomeService } from './services/home.service';
-
+import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule, MdCardModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    appRouting,
+    SharedModule,
+    RouterModule,
     HttpModule,
-    FormsModule,
     BrowserAnimationsModule,
-    HomeModule,
-    UsersModule,
-    MdToolbarModule,
+    MdSidenavModule,
+    MdMenuModule,
+    MdInputModule,
     MdButtonModule,
+    MdToolbarModule,
     MdCardModule,
-    RouterModule.forRoot([
-      { path: '', redirectTo: '/', pathMatch: 'full' },
-    ])
+    FlexLayoutModule
   ],
-  bootstrap: [AppComponent],
-  providers: [
-    CookieService,
-    AuthService,
-    UserService,
-    HomeService
-  ]
+  providers: [HomeService, AuthService, UserService, CookieService],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

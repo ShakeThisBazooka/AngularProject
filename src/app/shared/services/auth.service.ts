@@ -5,9 +5,11 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
 
   private cookieName: string;
+  private cookieId: string;
 
   constructor(private cookieService: CookieService) {
-    this.cookieName = 'safe-elks';
+    this.cookieName = 'username';
+    this.cookieId = 'userId';
   }
 
   getLoggedUser(): string {
@@ -19,6 +21,15 @@ export class AuthService {
     return username;
   }
 
+  getLoggedUserId(): string {
+    const id: string = this.cookieService.get(this.cookieId);
+    if (!id) {
+      return undefined;
+    }
+
+    return id;
+  }
+
   isLogged() {
     return this.cookieService.check(this.cookieName);
   }
@@ -26,6 +37,11 @@ export class AuthService {
   setLoggedUser(username: string) {
     const cookieDate: Date = new Date(2060, 1, 1);
     this.cookieService.set(this.cookieName, username, cookieDate);
+  }
+
+  setLoggedUserId(id: string) {
+    const cookieDate: Date = new Date(2060, 1, 1);
+    this.cookieService.set(this.cookieId, id, cookieDate);
   }
 
   clearUserCookie(): void {

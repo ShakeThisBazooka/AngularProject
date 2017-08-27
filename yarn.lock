@@ -10,9 +10,9 @@
     source-map "^0.5.6"
     typescript "^2.3.3"
 
-"@angular/animations@^4.3.5":
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-4.3.5.tgz#85aa454c887cc7cce11637ea5f6e9afad88490e1"
+"@angular/animations@^4.3.6":
+  version "4.3.6"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-4.3.6.tgz#bf9283ec7c8c98b32f569d84dcda10890fdc0262"
   dependencies:
     tslib "^1.7.1"
 
@@ -114,6 +114,12 @@
 "@angular/core@^4.2.4":
   version "4.3.5"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.3.5.tgz#bd1efdbf1ebcfb9c27a238e2aa4c48159b0895bb"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/flex-layout@^2.0.0-beta.9":
+  version "2.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-2.0.0-beta.9.tgz#3e54f898e805d0b1426d15e6139db415d04ee75f"
   dependencies:
     tslib "^1.7.1"
 
@@ -3193,6 +3199,10 @@ matcher-collection@^1.0.0:
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
+
+md2@0.0.28:
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/md2/-/md2-0.0.28.tgz#826de268c2c1d3e418c7c4d99835b11a52991562"
 
 media-typer@0.3.0:
   version "0.3.0"
