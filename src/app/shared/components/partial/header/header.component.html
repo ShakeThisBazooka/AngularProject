@@ -5,7 +5,7 @@
     <a [routerLink]="['/auth/login']">Login</a>
   </div>
   <div class="user-info" *ngIf="isLoggedIn == true">
-     <a [routerLink]="['/profile']">{{ currentUser }}</a> 
+     <a [routerLink]="['/profile']">{{ currentUser }}</a>
     <a (click)="logout()">Logout</a>
   </div>
 </md-toolbar>  -->
@@ -13,9 +13,11 @@
     <div class="branding">
       PluggingAway
     </div>
+   <div id="Person">
     <button class="user-info" [md-menu-trigger-for]="user" md-icon-button class="ml-xs">
       <md-icon>person</md-icon>
     </button>
+   </div>
     <md-menu #user="mdMenu" x-position="before">
       <button *ngIf="isLoggedIn" md-menu-item>
         <md-icon>account_box</md-icon>
@@ -30,5 +32,5 @@
         Login
       </button>
     </md-menu>
-  </md-toolbar> 
+  </md-toolbar>
 
