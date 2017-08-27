@@ -1,3 +1,34 @@
-<p>
-  register-step-2 works!
-</p>
+<div class="container">
+    <app-register-step-1 (onFormRequest)="buttonChoice=$event">
+    </app-register-step-1>
+      <div class="col-md-10">
+          <h2 *ngIf="buttonChocie == 'user-btn'"> 
+              <form>
+                  Username:<br>
+                  <input type="text" name="Username"><br>
+                  FullName:<br>
+                  <input type="text" name="FullName">
+                  Email:<br>
+                  <input type="email" name="email">
+                  Password:<br>
+                  <input type="password" name="password">
+                  <input type="submit" value="Submit">
+              </form> 
+          </h2>  
+          <h2 *ngIf="buttonChoice == 'company-btn'">
+            <form> 
+                 CompanyName:<br>
+                 <input type="text" name="CompanyName"><br>
+                 CompanyField:<br>
+                 <input type="text" name="CompanyField">
+                 Email:<br>
+                 <input type="email" name="email">
+                 Password:<br>
+                 <input type="password" name="password">
+                 VatNumber:<br>
+                 <input type="text" name="vatnumber">
+                 <input type="submit" value="Submit">
+            </form>
+          </h2>
+      </div>
+</div>

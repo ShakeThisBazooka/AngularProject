@@ -8,14 +8,16 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class RegisterStep1Component implements OnInit {
 
   @Output() onFormRequest = new EventEmitter<string>();
+  buttonChoice: string;
   
   constructor() { }
 
   ngOnInit() {
   }
 
-  getFormResult(value: string){
-    this.onFormRequest.emit(value);
+  getFormResult(buttonValue: string){
+    this.onFormRequest.emit(buttonValue);
+    this.buttonChoice = buttonValue;
   }
 
 }
