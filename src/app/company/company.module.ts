@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'app/shared/shared.module';
-import { companyRouting } from 'app/company/company.routes';
-import { CompanyGuard } from 'app/company/guards/company.guard';
+import { companyRouting } from './company.routes';
+import { SharedModule } from '../shared/shared.module';
+import { CompanyGuard } from './guards/company.guard';
+
 
 @NgModule({
   imports: [

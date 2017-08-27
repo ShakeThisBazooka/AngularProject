@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from 'app/shared/dashboard.component';
-import { CompanyGuard } from 'app/company/guards/company.guard';
+import { DashboardComponent } from '../shared/dashboard.component';
+import { CompanyGuard } from './guards/company.guard';
+
 
 
 const companyRoutes: Routes = [

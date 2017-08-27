@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const appRoutes: Routes = [
-  { path: '', loadChildren: 'app/unauthenticated/unauthenticated.module#UnauthenticatedModule' },
+  { path: '', loadChildren: 'app/front/front.module#FrontModule' },
   { path: 'applicant', loadChildren: 'app/applicant/applicant.module#ApplicantModule' },
   { path: 'company', loadChildren: 'app/company/company.module#CompanyModule' },
   { path: 'auth', loadChildren: 'app/authentication/authentication.module#AuthenticationModule' },

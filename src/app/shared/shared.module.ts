@@ -2,11 +2,12 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {HeaderComponent} from './components/partial/header/header.component';
-import {FooterComponent} from './components/partial/footer/footer.component'
-import {MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule} from '@angular/material';
+import { MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule, MdIconModule } from '@angular/material';
 import {Md2Module} from 'md2';
-import { DashboardComponent } from 'app/shared/dashboard.component';
-import { SideNavComponent } from 'app/shared/components/partial/side-nav/side-nav.component';
+import { DashboardComponent } from '../shared/dashboard.component';
+import { SideNavComponent } from '../shared/components/partial/side-nav/side-nav.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
 
 
 @NgModule({
@@ -18,12 +19,13 @@ import { SideNavComponent } from 'app/shared/components/partial/side-nav/side-na
     MdInputModule,
     MdButtonModule,
     MdToolbarModule,
-    Md2Module
+    Md2Module,
+    MdIconModule
   ],
   exports: [
-    HeaderComponent, FooterComponent, SideNavComponent, DashboardComponent
+    HeaderComponent,  SideNavComponent, DashboardComponent, ProfileComponent
   ],
-  declarations: [DashboardComponent, HeaderComponent, FooterComponent, SideNavComponent]
+  declarations: [DashboardComponent, HeaderComponent, SideNavComponent, ProfileComponent]
 })
 export class SharedModule {
 }
