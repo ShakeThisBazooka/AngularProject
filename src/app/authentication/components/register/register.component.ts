@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
     public form: FormGroup;
     public user: User = new User();
+    public isRoleSelected: boolean = false;
 
     public constructor(private router: Router,
     private userService: UserService) { }
@@ -21,5 +22,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+
+    public assignRole(role: string) {
+      this.user.role = role;
+      this.isRoleSelected = true;
+    }
 
 }

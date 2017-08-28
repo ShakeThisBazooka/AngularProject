@@ -1,4 +1,38 @@
-<div id="container">
+<!-- <div id="container">
   <button type="button" ng-click="getFormResult('user-btn')" [class.active]="'user-btn'===buttonChoice">Register User</button>
   <button type="button" ng-click="getFormResult('company-btn')">Register Company</button>  
+</div> -->
+
+<div class="session mat-indigo">
+    <div class="session-content">
+        <div class="session-wrapper">
+            <md-card>
+                <md-card-content>
+                    <form [formGroup]="formStepOne" (ngSubmit)="onSubmit()">
+                        <div class="text-xs-center pb-1">
+                            <h2 class="mat-text-muted">PluggingAway</h2>
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="space-around">
+                              <div class="pb-1">
+                                <md-button-toggle-group formControlName="role" color="primary" [(ngModel)]="user.role"
+                                                        #group="mdButtonToggleGroup">
+                                    <md-button-toggle fxLayoutAlign="center center" fxFlex="50" value="applicant">
+                                        Applicant
+                                    </md-button-toggle>
+                                    <md-button-toggle fxLayoutAlign="center center" fxFlex="50" value="company">
+                                        Company
+                                    </md-button-toggle>
+                                </md-button-toggle-group>
+                            </div>
+                            <button  md-raised-button color="primary" class="btn-block text-xs-center" type="submit" [disabled]="!formStepOne.valid">Continue
+                            </button>
+                        </div>
+                        <div class="pt-1 pb-1 text-xs-center">&nbsp;&nbsp;
+                            <a md-button [routerLink]="['/auth/login']">Sign in.</a>
+                        </div>
+                    </form>
+                </md-card-content>
+            </md-card>
+        </div>
+    </div>
 </div>
