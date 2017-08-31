@@ -1,28 +1,9 @@
-<!-- <div class="container">
-      <div class="col-md-10">
-          <h2 *ngIf="buttonChoice == 'company-btn'">
-            <form> 
-                 CompanyName:<br>
-                 <input type="text" name="CompanyName"><br>
-                 CompanyField:<br>
-                 <input type="text" name="CompanyField">
-                 Email:<br>
-                 <input type="email" name="email">
-                 Password:<br>
-                 <input type="password" name="password">
-                 VatNumber:<br>
-                 <input type="text" name="vatnumber">
-                 <input type="submit" value="Submit">
-            </form>
-          </h2>
-      </div>
-</div> -->
-
  <div class="session mat-indigo">
     <div class="session-content">
-        <div class="session-wrapper">
+        <div *ngIf="userRole==="applicant"" class="session-wrapper">
             <md-card>
                 <md-card-content>
+                    *ngIf 
                     <form [formGroup]="formStepTwo" (ngSubmit)="onSubmit()">
                         <div class="text-xs-center pb-1">
                             <h2 class="mat-text-muted">PluggingAway</h2>
@@ -66,6 +47,60 @@
                     </form>
                 </md-card-content>
             </md-card>
+        </div>
+        <div *ngIf="userRole==="company"" class="session-wrapper">
+                <md-card>
+                    <md-card-content>
+                       *ngIf 
+                        <form [formGroup]="formStepTwo" (ngSubmit)="onSubmit()">
+                            <div class="text-xs-center pb-1">
+                                <h2 class="mat-text-muted">PluggingAway</h2>
+                            </div>
+                            <div fxLayout="column" fxLayoutAlign="space-around">
+                                <div class="pb-1">
+                                    <md-input-container fxFlex="100">
+                                        <input mdInput
+                                               class="companyName"
+                                               formControlName="companyname"
+                                               placeholder="CompanyName"
+                                               [(ngModel)]="user.companyname">
+                                               <md-error>Company Name is required.</md-error>
+                                        <input mdInput
+                                               class="companyField"
+                                               formControlName="companyfield"
+                                               placeholder="CompanyField"
+                                               [(ngModel)]="user.companyfield">
+                                               <md-error>Company Field is required.</md-error>
+                                        <input mdInput
+                                               class="userEmail"
+                                               formControlName="email"
+                                               placeholder="Email"
+                                               [(ngModel)]="user.email">
+                                               <md-error>Email is required.</md-error>
+                                        <input mdInput
+                                               class="userPassword"
+                                               formControlName="password"
+                                               placeholder="Password"
+                                               [(ngModel)]="user.password">
+                                               <md-error>Password is required.</md-error>
+                                        <input mdInput
+                                               class="VatNumber"
+                                               formControllerName="vatnumber"
+                                               placeholder="VatNumber"
+                                               [(ngModel)]="user.vatnumber">
+                                               <md-error>Vat Number is required.</md-error>
+                                    </md-input-container>
+                                </div>
+                                  <button  md-raised-button color="primary" class="btn-block text-xs-center" type="submit" [disabled]="!formStepTwo.valid">Create your
+                                        account
+                                   </button>
+                                </div>
+                                <div class="pt-1 pb-1 text-xs-center">&nbsp;&nbsp;
+                                    <a md-button [routerLink]="['/auth/login']">Sign in.</a>
+                                </div>
+                            </form>
+                        </md-card-content>
+                    </md-card>
         </div>
     </div>
 </div> 
