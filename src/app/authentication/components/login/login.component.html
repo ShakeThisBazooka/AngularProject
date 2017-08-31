@@ -31,7 +31,7 @@
                             <h2 class="mat-text-muted">PluggingAway</h2>
                         </div>
                         <div fxLayout="column" fxLayoutAlign="space-around">
-                            <div class="pb-1">
+                            <!-- <div class="pb-1">
                                 <md-input-container fxFlex="100">
                                     <input mdInput
                                            class="userEmail"
@@ -50,7 +50,22 @@
                                         Email is invalid.
                                     </md-error>
                                 </md-input-container>
-                            </div>
+                            </div> -->
+                             <div class="pb-1">
+                                <md-input-container fxFlex="100">
+                                    <input mdInput
+                                           class="userUsername"
+                                           type="text"
+                                           formControlName="username"
+                                           placeholder="Username"
+                                           [(ngModel)]="user.name">
+                                    <md-error
+                                            *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched"
+                                    >
+                                       Username is required.
+                                    </md-error>
+                                </md-input-container>
+                            </div> 
                             <div class="pb-1">
                                 <md-input-container fxFlex="100">
                                     <input mdInput
@@ -58,7 +73,7 @@
                                            type="password"
                                            placeholder="Password"
                                            formControlName="password"
-                                           [(ngModel)]="user.Password">
+                                           [(ngModel)]="user.password">
                                     <md-error
                                             *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched"
                                     >

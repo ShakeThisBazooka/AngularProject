@@ -6,14 +6,14 @@ import { AuthService } from '../../shared/services/auth.service';
 @Injectable()
 export class IsSignedInGuard implements CanActivate {
 
-  public constructor(private _router: Router, private authService: AuthService) {
+  public constructor(private router: Router, private authService: AuthService) {
     }
 
-    public canActivate(): Observable<boolean> | boolean{
+    public canActivate(): Observable<boolean> | boolean {
       if (this.authService.isLogged()) {
-      console.log('User is already logged in!');
-
-      this.router.navigateByUrl('');
-    }
+        this.router.navigateByUrl('');
+        return false;
+      }
+      return true;
     }
 }
