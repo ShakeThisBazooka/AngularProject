@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+
 import { User } from '../../../../shared/models/user';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-register-step-2',
@@ -24,6 +25,5 @@ export class RegisterStep2Component implements OnInit {
   }
 
   onSubmit(){
-
   }
 }

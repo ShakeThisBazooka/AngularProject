@@ -1,18 +1,5 @@
 <!-- <div class="container">
       <div class="col-md-10">
-          <h2 *ngIf="buttonChocie == 'user-btn'"> 
-              <form>
-                  Username:<br>
-                  <input type="text" name="Username"><br>
-                  FullName:<br>
-                  <input type="text" name="FullName">
-                  Email:<br>
-                  <input type="email" name="email">
-                  Password:<br>
-                  <input type="password" name="password">
-                  <input type="submit" value="Submit">
-              </form> 
-          </h2>  
           <h2 *ngIf="buttonChoice == 'company-btn'">
             <form> 
                  CompanyName:<br>
@@ -44,11 +31,29 @@
                             <div class="pb-1">
                                 <md-input-container fxFlex="100">
                                     <input mdInput
-                                           class="userEmail"
+                                           class="userName"
                                            formControlName="username"
                                            placeholder="Name"
                                            [(ngModel)]="user.username">
                                     <md-error>Username is required.</md-error>
+                                    <input mdInput
+                                           class="userFullName"
+                                           formControlName="fullname"
+                                           placeholder="Fullname"
+                                           [(ngModel)]="user.fullname">
+                                    <md-error>Fullname is required.</md-error>
+                                    <input mdInput
+                                           class="userEmail"
+                                           formControlName="email"
+                                           placeholder="Email"
+                                           [(ngModel)]="user.email">
+                                    <md-error>Email is required.</md-error>
+                                    <input mdInput
+                                           class="userPassword"
+                                           formControlName="password"
+                                           placeholder="Password"
+                                           [(ngModel)]="user.password">
+                                    <md-error>Password is required.</md-error>
                                 </md-input-container>
                             </div>
                             <button  md-raised-button color="primary" class="btn-block text-xs-center" type="submit" [disabled]="!formStepTwo.valid">Create your
