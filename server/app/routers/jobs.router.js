@@ -1,3 +1,3 @@
-/**
- * Created by Vladimir on 9/2/2017.
- */
+const attachTo = (app, {jobsController}) => {
+  app.get('/api/jobs', jobsController.getJobs)
+};
