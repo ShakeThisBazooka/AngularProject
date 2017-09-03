@@ -1,4 +1,4 @@
-.main-header .header-link{
+ .main-header .header-link{
     display: -webkit-box;
     display: -moz-box;
     display: -webkit-flex;
@@ -11,4 +11,9 @@
     line-height: 50px;
     padding: 0 12px 0 8px;
     cursor: pointer;
+} 
+
+.main-header .spacer{
+  display: flex;
+  flex: 1 1 auto;
 }

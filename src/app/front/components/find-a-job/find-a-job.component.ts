@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Job } from '../../../shared/models/job';
 
 @Component({
   selector: 'app-find-a-job',
   templateUrl: './find-a-job.component.html',
-  styleUrls: ['./find-a-job.component.css']
+  styleUrls: ['./find-a-job.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class FindAJobComponent implements OnInit {
 
