@@ -27,7 +27,7 @@ export class CompanyService {
   }
 
   public update(company: Company): Observable<Company> {
-    return this.http.put(`${environment.apiEndpoint}/company/${company.id}`, company, getHeaders())
+    return this.http.put(`${environment.apiEndpoint}/company/${company.userId}`, company, getHeaders())
       .map((res) => res.json())
       .catch((err: Response) => handleError(err));
   }

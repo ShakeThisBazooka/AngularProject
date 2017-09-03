@@ -1,5 +1,6 @@
 export class Company {
-    id: string; // connected to user by the same id
+    userId: string; // connected to user by the same id
+    name: string;
     vat: string;
     field: string;
 }

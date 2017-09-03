@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Job } from '../../../shared/models/job';
 
 @Component({
   selector: 'app-find-a-job',
@@ -7,6 +8,99 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FindAJobComponent implements OnInit {
 
+  selectedValue: string;
+
+  foods = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
+
+//   export class Job {
+//     id: string;
+//     companyId: string;
+//     applicants: Applicant[];
+//     description: string;
+//     companyInfo: string;
+//     requirements: string;
+//     benefits: string;
+// }
+
+  public jobs = [
+    {
+      title: 'Javascript Engineer',
+      description: `A JavaScript developer is responsible for
+                    implementing the front-end logic that defines the behavior of the visual elements
+                    of a web application. `,
+      company: {
+        name: 'Centroida'
+      }
+    },
+    {
+      title: 'Javascript Engineer',
+      description: `A JavaScript developer is responsible for
+                    implementing the front-end logic that defines the behavior of the visual elements
+                    of a web application. `,
+      company: {
+        name: 'Centroida'
+      }
+    },
+    {
+      title: 'Javascript Engineer',
+      description: `A JavaScript developer is responsible for
+                    implementing the front-end logic that defines the behavior of the visual elements
+                    of a web application. `,
+      company: {
+        name: 'Centroida'
+      }
+    },
+    {
+      title: 'Javascript Engineer',
+      description: `A JavaScript developer is responsible for
+                    implementing the front-end logic that defines the behavior of the visual elements
+                    of a web application. `,
+      company: {
+        name: 'Centroida'
+      }
+    },
+    {
+      title: 'Javascript Engineer',
+      description: `A JavaScript developer is responsible for
+                    implementing the front-end logic that defines the behavior of the visual elements
+                    of a web application. `,
+      company: {
+        name: 'Centroida'
+      }
+    },
+    {
+      title: 'Javascript Engineer',
+      description: `A JavaScript developer is responsible for
+                    implementing the front-end logic that defines the behavior of the visual elements
+                    of a web application. `,
+      company: {
+        name: 'Centroida'
+      }
+    },
+    {
+      title: 'Javascript Engineer',
+      description: `A JavaScript developer is responsible for
+                    implementing the front-end logic that defines the behavior of the visual elements
+                    of a web application. `,
+      company: {
+        name: 'Centroida'
+      }
+    },
+    {
+      title: 'Javascript Engineer',
+      description: `A JavaScript developer is responsible for
+                    implementing the front-end logic that defines the behavior of the visual elements
+                    of a web application. `,
+      company: {
+        name: 'Centroida'
+      }
+    }
+
+  ];
   constructor() { }
 
   ngOnInit() {

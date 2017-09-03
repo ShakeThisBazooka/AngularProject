@@ -27,7 +27,7 @@ export class ApplicantService {
   }
 
   public update(applicant: Applicant): Observable<any> {
-    return this.http.put(`${environment.apiEndpoint}/applicant/${applicant.id}`, applicant, getHeaders())
+    return this.http.put(`${environment.apiEndpoint}/applicant/${applicant.userId}`, applicant, getHeaders())
       .map((res) => res.json())
       .catch((err: Response) => handleError(err));
   }

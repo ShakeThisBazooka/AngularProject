@@ -9,11 +9,16 @@
     <a (click)="logout()">Logout</a>
   </div>
 </md-toolbar>  -->
- <md-toolbar class="main-header" color="primary">
-    <div class="branding">
+ <md-toolbar fxLayout="row" class="main-header" color="primary">
+    <a [routerLink]="['/home']" class="branding">
       PluggingAway
-    </div>
-   <div id="Person">
+    </a>
+    <a [routerLink]="['/home']" class="header-link">
+      Home
+    </a>
+    <a [routerLink]="['/jobs']" class="header-link">
+      Jobs
+    </a>
     <button class="user-info" [md-menu-trigger-for]="user" md-icon-button class="ml-xs">
       <md-icon>person</md-icon>
     </button>
