@@ -16,16 +16,6 @@ export class FindAJobComponent implements OnInit {
     {value: 'tacos-2', viewValue: 'Tacos'}
   ];
 
-//   export class Job {
-//     id: string;
-//     companyId: string;
-//     applicants: Applicant[];
-//     description: string;
-//     companyInfo: string;
-//     requirements: string;
-//     benefits: string;
-// }
-
   public jobs = [
     {
       title: 'Javascript Engineer',

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from '../shared/dashboard.component';
 import { FindAJobComponent } from './components/find-a-job/find-a-job.component';
 import { HomeComponent } from './components/home/home.component';
+import { JobDetailComponent } from './components/job-detail/job-detail.component';
 
 
 
@@ -14,7 +15,8 @@ const frontRoutes: Routes = [
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'jobs', component: FindAJobComponent }
+            { path: 'jobs', component: FindAJobComponent },
+            { path: 'jobs/job', component: JobDetailComponent }
         ]
     }
 ];
