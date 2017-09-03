@@ -6,6 +6,7 @@ const attachTo = (app, controllers) => {
     .filter((file) => file.includes('.router'))
     .forEach((filename) => {
       const modulePath = path.join(__dirname, filename);
+      console.log(controllers, "controllers");
       require(modulePath).attachTo(app, controllers);
     });
 

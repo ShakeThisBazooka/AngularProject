@@ -13,13 +13,8 @@ const jobsController = () => {
             return res.json(filteredJobs);
           })
       }
-      updateJob(req, res)
-      {
-        return data.jobs.update(req)
-          .then((job) => {
-            return res.json(job);
-          })
-      }
+    }
+  }
 }
 
-  module.exports = jobsController();
+module.exports = jobsController;
