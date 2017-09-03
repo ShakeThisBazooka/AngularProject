@@ -9,9 +9,9 @@ const init = (data) => {
   app.use(express.static(path.join(__dirname, '../../dist/')));
 
   require('./config/app.config').attachTo(app);
-  require('./config/auth.config').attachTo(app, data.users);
+  require('./config/auth.config')(app, data.users)
+  console.log('tuka sum')
   require('./routers').attachTo(app, controllers);
-
   return app;
 };
 

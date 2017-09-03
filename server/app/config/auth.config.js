@@ -1,28 +1,51 @@
-const { Strategy } = require('passport-local');
 const passport = require('passport');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-const attachTo = (app, usersData) => {
+const attachTo = (app, users) => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  passport.use('local', new Strategy(
-    (username, password, done) => {
-      return usersData.getByObjectName(username)
-        .then((user) => usersData.checkPassword(user, password))
-        .then((user) => done(null, user))
-        .catch((error) => done(error));
-    }
-  ));
+  const opts = {};
+  opts.jwtFromRequest = ExtractJwt.fromHeader('token');
+  opts.secretOrKey = 'SuperSecret';
+
+  passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
+    users.findById(jwt_payload._id)
+      .then((user) => {
+        if (user) {
+          return done(null, user);
+        }
+
+        return done(null, false);
+      })
+      .catch((err) => {
+        done(err, false);
+      });
+  }));
 
   passport.serializeUser((user, done) => {
-    return done(null, user._id);
+    if (user) {
+      return done(null, user._id);
+    }
+
+    return done(null, null);
   });
 
   passport.deserializeUser((id, done) => {
-    return usersData.getById(id)
-      .then((user) => done(null, user))
-      .catch((error) => done(error));
+    users
+      .findById(id)
+      .then(user => {
+        if (!user) {
+          return done(null, false);
+        }
+
+        return done(null, user);
+      })
+      .catch(err => {
+        done(err, false);
+      });
   });
 };
 
-module.exports = { attachTo };
+module.exports = attachTo;

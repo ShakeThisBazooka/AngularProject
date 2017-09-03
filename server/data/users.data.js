@@ -26,6 +26,25 @@ class UsersData extends BaseData {
     });
   }
 
+  validateIfUserExist(user){
+     return this.collection.findOne({username:user.username})
+       .then((returnedUser)=>{
+          if(returnedUser === null){
+            return Promise.reject("Such user does not exist")
+          }
+          else{
+            user.password = CryptoJS.SHA1(user.password).toString();
+            if(returnedUser.password !== user.password){
+              return Promise.reject("Such user does not exist")
+            }
+            else{
+              return Promise.resolve(user);
+            }
+
+          }
+       })
+  }
+
   checkPassword(user, password) {
     if (!user) {
       return Promise.reject('Invalid user');
