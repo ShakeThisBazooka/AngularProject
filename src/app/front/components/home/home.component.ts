@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../../../shared/services/home.service';
 
 
 @Component({
@@ -8,14 +7,9 @@ import { HomeService } from '../../../shared/services/home.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  info: string;
-  constructor(private homeService: HomeService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.homeService.getHomeInfo()
-      .subscribe((response: any) => {
-        this.info = response.info;
-      });
   }
 
 }

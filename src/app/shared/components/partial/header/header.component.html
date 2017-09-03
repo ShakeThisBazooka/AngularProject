@@ -1,23 +1,18 @@
- <!-- <md-toolbar>
-  <a [routerLink]="['/']">Home</a>
-  <div class="user-info" *ngIf="isLoggedIn == false">
-    <a [routerLink]="['/auth/register']">Register</a>
-    <a [routerLink]="['/auth/login']">Login</a>
-  </div>
-  <div class="user-info" *ngIf="isLoggedIn == true">
-     <a [routerLink]="['/profile']">{{ currentUser }}</a>
-    <a (click)="logout()">Logout</a>
-  </div>
-</md-toolbar>  -->
- <md-toolbar class="main-header" color="primary">
-    <div class="branding">
+<md-toolbar class="main-header" color="primary">
+    <a [routerLink]="['/home']" class="branding">
       PluggingAway
+    </a>
+    <a [routerLink]="['/home']" class="header-link">
+      Home
+    </a>
+    <a [routerLink]="['/jobs']" class="header-link">
+      Jobs
+    </a>
+    <div class="spacer">
     </div>
-   <div id="Person">
-    <button class="user-info" [md-menu-trigger-for]="user" md-icon-button class="ml-xs">
+      <button class="user-info" [md-menu-trigger-for]="user" md-icon-button class="ml-xs">
       <md-icon>person</md-icon>
     </button>
-   </div>
     <md-menu #user="mdMenu" x-position="before">
       <button *ngIf="isLoggedIn" md-menu-item>
         <md-icon>account_box</md-icon>

@@ -1,6 +1,8 @@
+import { Job } from './job';
+
 export class Applicant {
-    id: string; // connected to user by the same id
-    jobIds: string[];
+    userId: string; // connected to user by the same id
+    jobs: Job[];
     firstName: string;
     lastName: string;
 }

@@ -1,3 +1,53 @@
-<div>
-  kiki
+<md-toolbar class="find-a-job-content" color="primary" fxLayout="row" fxLayoutAlign="center center">
+  <span fxFlex="1 1 auto" fxLayoutAlign="center center">Search for a job</span>
+  <md-toolbar-row>
+        <form fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+          <md-select placeholder="Location" [(ngModel)]="selectedValue" name="food">
+            <md-option *ngFor="let food of foods" [value]="food.value">
+              <span>{{food.viewValue}}</span>
+            </md-option>
+          </md-select>
+          <md-select placeholder="Category" [(ngModel)]="selectedValue" name="food">
+            <md-option *ngFor="let food of foods" [value]="food.value">
+              <span>{{food.viewValue}}</span>
+            </md-option>
+          </md-select>
+          <md-select placeholder="Engagement" [(ngModel)]="selectedValue" name="food">
+            <md-option *ngFor="let food of foods" [value]="food.value">
+              <span>{{food.viewValue}}</span>
+            </md-option>
+          </md-select>
+
+          <!-- <p> Selected value: {{selectedValue}} </p> -->
+        </form>
+  </md-toolbar-row>
+  <!-- <button md-raised-button *isPermitted="" color="accent" (click)="onAddPlayer.emit()" class="mr-1">
+                <md-icon class="md-24">add</md-icon>Add player
+            </button> -->
+</md-toolbar>
+<hr>
+
+<div class="jobs-wrapper">
+    <div fxLayout="row" fxLayoutWrap="wrap">
+        <div fxFlex.gt-xs="33" fxFlex.gt-sm="25" fxFlex.gt-md="25" fxFlex="100" *ngFor="let job of jobs">
+            <md-card>
+                <md-card-header>
+                    <md-card-title> {{ job.title }}</md-card-title>
+                </md-card-header>
+                <hr>
+                <md-card-content>
+                  {{ job.description }}
+                </md-card-content>
+                <md-card-subtitle>
+                  Posted by: {{ job.company.name }}
+                </md-card-subtitle>
+                <hr>
+                <md-card-actions fxLayout="row" fxLayoutAlign="start stretch">
+                    <button [routerLink]="['/jobs/job']" color="primary" fxLayoutAlign="center center" fxFlex="100" md-button>
+                        View
+                    </button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </div>
 </div>

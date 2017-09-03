@@ -1,0 +1,7 @@
+.find-a-job-content .mat-select-trigger, .mat-select-arrow {
+    color: white !important;
+}
+
+.find-a-job-content .mat-select-underline{
+    background-color: white;
+}

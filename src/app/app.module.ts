@@ -5,7 +5,6 @@ import {AppComponent} from './app.component';
 import {SharedModule} from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { appRouting } from './app.routes';
-import { HomeService } from './shared/services/home.service';
 import { AuthService } from './shared/services/auth.service';
 import { UserService } from './shared/services/user.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -33,7 +32,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MdCardModule,
     FlexLayoutModule
   ],
-  providers: [HomeService, AuthService, UserService, CookieService],
+  providers: [AuthService, UserService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
