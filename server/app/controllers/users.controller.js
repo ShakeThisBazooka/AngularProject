@@ -44,7 +44,6 @@ const usersController = (data) => {
         return res.status(401).json({errorMessage: "user is not authentificated"})
       }
       else {
-        console.log('else')
         data.users.validateIfUserExist(user)
           .then((user) => {
             const jwtObject = {

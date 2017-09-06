@@ -1,7 +1,7 @@
 const ObjectId = require('mongodb').ObjectID;
 
-const BaseData = require('../base/base.data');
-const Applicant = require('../models/applicant.model');
+const BaseData = require('./base/base.data');
+const Applicant = require('./models/applicant.model');
 
 class ApplicantData extends BaseData {
   constructor(db) {

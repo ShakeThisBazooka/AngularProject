@@ -2,9 +2,12 @@ const applicantController = (data) => {
     return {
         getById(req, res) {
             const userId = req.params.id;
-            console.log(userId);
+            console.log("V applicants");
+
+            console.log(data.applicants);
 
             return data.applicants.getByUserId(userId).then((applicant) => {
+                console.log(applicant);
                 return res.send({success: true, applicant});
             });
         },
@@ -23,7 +26,6 @@ const applicantController = (data) => {
 
         createApplicant(req, res) {
             const applicant = req.body;
-            console.log(applicant);
 
             return data.applicants.create(req.body)
             .then((newApplicant) => {
@@ -35,5 +37,5 @@ const applicantController = (data) => {
         }
     };
   };
-  
+
   module.exports = applicantController;

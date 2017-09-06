@@ -1,5 +1,5 @@
 const UsersData = require('./users.data');
-const ApplicantsData = require('./models/applicant.data');
+const ApplicantsData = require('./applicant.data');
 
 const init = (db) => {
   return Promise.resolve({

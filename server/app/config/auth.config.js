@@ -7,12 +7,14 @@ const attachTo = (app, users) => {
   app.use(passport.session());
 
   const opts = {};
-  opts.jwtFromRequest = ExtractJwt.fromHeader('Authorization');
-  opts.secretOrKey = 'SuperSecret';
+  opts.jwtFromRequest = ExtractJwt.fromHeader('Token');
+  opts.secretOrKey = app.get('SuperSecret');
 
   passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
+    console.log('Strategy')
     users.findById(jwt_payload._id)
       .then((user) => {
+
         if (user) {
           return done(null, user);
         }
@@ -26,6 +28,7 @@ const attachTo = (app, users) => {
 
   passport.serializeUser((user, done) => {
     if (user) {
+      console.log("Serialize")
       return done(null, user._id);
     }
 
@@ -33,6 +36,7 @@ const attachTo = (app, users) => {
   });
 
   passport.deserializeUser((id, done) => {
+    console.log("Deserialize")
     users
       .findById(id)
       .then(user => {
