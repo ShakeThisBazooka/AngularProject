@@ -16,7 +16,7 @@ function ensureToken(req,res,next) {
     req.token = token;
     next();
   } else {
-    console.log('You are not authorized....');
+    res.status(400).json({success: false, error: "Access is denied. User is not authorized."});
   }
 }
 
