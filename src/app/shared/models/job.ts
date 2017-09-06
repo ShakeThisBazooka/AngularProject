@@ -10,4 +10,7 @@ export class Job {
     companyInfo: string;
     requirements: string;
     benefits: string;
+    location: string;
+    category: string;
+    engagement: string;
 }

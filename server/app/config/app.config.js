@@ -14,13 +14,13 @@ const attachTo = (app) => {
   app.set('SuperSecret','megaSecret');
 
   //app.use(cookieParser('keyboard cat'));
-  app.use(session({
-    store: new MongoStore({ url: config.connectionString }),
-    saveUninitialized: true,
-    resave: false,
-    secret: 'secret',
-    maxAge: 60000,
-  }));
+  // app.use(session({
+  //   store: new MongoStore({ url: config.connectionString }),
+  //   saveUninitialized: true,
+  //   resave: false,
+  //   secret: 'secret',
+  //   maxAge: 60000,
+  // }));
 };
 
 module.exports = { attachTo };
