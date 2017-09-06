@@ -7,7 +7,7 @@ const attachTo = (app, users) => {
   app.use(passport.session());
 
   const opts = {};
-  opts.jwtFromRequest = ExtractJwt.fromHeader('token');
+  opts.jwtFromRequest = ExtractJwt.fromHeader('Authorization');
   opts.secretOrKey = 'SuperSecret';
 
   passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
