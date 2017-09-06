@@ -17,7 +17,9 @@ const applicantController = (data) => {
                     return Promise.reject('no applicant');
                 }
 
-                return data.applicants.updateApplicant(userId);
+                return data.applicants.updateApplicant(userId).then((applicant) => {
+                    return res.send({success: true, applicant});
+                });
             });
         },
 
