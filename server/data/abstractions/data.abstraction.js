@@ -40,7 +40,7 @@ class Data {
         }
 
         // eslint-disable-next-line
-        return this.collection.findOne({ _id: ObjectId(id) });
+        return this.collection.findOne({ _id: ObjectId(id) }).toArray();
     }
 
     add(model) {

@@ -10,6 +10,7 @@ class UsersData extends BaseData {
   }
 
   create(user) {
+    console.log(user);
     if (!this._isModelValid(user)) {
       return Promise.reject('Invalid user');
     }
@@ -21,13 +22,13 @@ class UsersData extends BaseData {
       }
       user.password = CryptoJS.SHA1(user.password).toString();
       return this.collection.insert(user);
-    }).then(() => {
-      return this.ModelClass.toViewModel(user);
+    }).then((newuser) => {
+      return newuser;
     });
   }
 
   validateIfUserExist(user){
-     return this.collection.findOne({username:user.username})
+     return this.collection.findOne({email:user.email})
        .then((returnedUser)=>{
           if(returnedUser === null){
             return Promise.reject("Such user does not exist")
@@ -38,7 +39,7 @@ class UsersData extends BaseData {
               return Promise.reject("Such user does not exist")
             }
             else{
-              return Promise.resolve(user);
+              return Promise.resolve(returnedUser);
             }
 
           }
