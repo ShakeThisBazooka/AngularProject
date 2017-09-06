@@ -11,9 +11,13 @@ const attachTo = (app, {applicantController}) => {
   };
 
 function ensureToken(req,res,next) {
-  const token = req.headers["token"];
-  req.token = token;
-  next();
+  if(req.headers["token"]) {
+    const token = req.headers["token"];
+    req.token = token;
+    next();
+  } else {
+    console.log('You are not authorized....');
+  }
 }
 
   module.exports = {attachTo};
