@@ -14,13 +14,16 @@ const applicantController = (data) => {
 
         updateApplicant(req, res) {
             const userId = req.params.id;
+            const applicantToUpdate = req.body;
 
             const foundApplicant = data.applicants.getByUserId(userId).then((appl) => {
                 if(appl === undefined){
                     return Promise.reject('no applicant');
                 }
 
-                return data.applicants.updateApplicant(userId).then((applicant) => {
+                console.log(applicantToUpdate);
+
+                return data.applicants.updateCurrentApplicant(applicantToUpdate).then((applicant) => {
                     return res.send({success: true, applicant});
                 });
             });

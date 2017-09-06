@@ -28,7 +28,7 @@ class ApplicantData extends BaseData {
     });
   }
 
-  create(applicant) {
+  updateCurrentApplicant(applicant) {
     if (!this._isModelValid(applicant)) {
       return Promise.reject('Invalid applicant');
     }
@@ -38,17 +38,16 @@ class ApplicantData extends BaseData {
     }
     return this.collection.findOne({
       userId: applicant.userId,
-    }).then((applicant) => {
-      return this.collection.updateOne({ userId: applicant.userId }, 
+    }).then((appl) => {
+        this.collection.updateOne({ userId: applicant.userId }, 
         { $set: 
           { 
             'jobs': applicant.jobs, 
             'firstName': applicant.firstName, 
             'lastName': applicant.lastName
           }
-        });
-    }).then(() => {
-      return this.ModelClass.toViewModel(applicant);
+        }, { upsert: true });
+        return appl;
     });
   }
 

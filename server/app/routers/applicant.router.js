@@ -6,7 +6,7 @@ const passport = require('passport');
 const attachTo = (app, {applicantController}) => {
     app.get('/api/applicant/:id', ensureToken, applicantController.getById);
     app.post('/api/applicant',ensureToken, applicantController.createApplicant);
-    app.put('/api/applicant/:id', applicantController.updateApplicant);
+    app.put('/api/applicant/:id', ensureToken, applicantController.updateApplicant);
 
   };
 
