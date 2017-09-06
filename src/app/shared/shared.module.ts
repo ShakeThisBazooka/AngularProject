@@ -7,6 +7,7 @@ import {Md2Module} from 'md2';
 import { DashboardComponent } from '../shared/dashboard.component';
 import { SideNavComponent } from '../shared/components/partial/side-nav/side-nav.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -20,7 +21,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     MdButtonModule,
     MdToolbarModule,
     Md2Module,
-    MdIconModule
+    MdIconModule,
+    FlexLayoutModule
   ],
   exports: [
     HeaderComponent,  SideNavComponent, DashboardComponent, ProfileComponent

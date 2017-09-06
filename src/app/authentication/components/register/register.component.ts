@@ -1,26 +1,31 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import 'rxjs/add/operator/map';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../../shared/models/user';
 import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
 
-  private user: User = new User();
+    public form: FormGroup;
+    public user: User = new User();
+    public isRoleSelected: boolean = false;
 
-  constructor(
-    private userService: UserService,
-    private router: Router) { }
+    public constructor(private router: Router,
+    private userService: UserService) { }
 
   ngOnInit() {
   }
 
+
+    public assignRole(role: string) {
+      this.user.role = role;
+      this.isRoleSelected = true;
+    }
 
 }

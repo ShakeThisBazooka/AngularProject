@@ -11,13 +11,24 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   public isLoggedIn: boolean;
-  public currentUser: string;
 
   constructor(private userService: UserService,
-            private router: Router) { }
+            private router: Router) {
+
+              if (this.userService.getLoggedIn) {
+                this.isLoggedIn = true;
+              }
+    }
 
   ngOnInit() {
   }
+
+  logout() {
+    this.userService.logout();
+    this.isLoggedIn = false;
+    this.router.navigateByUrl('home');
+  }
+
 
 }
 

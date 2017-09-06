@@ -44,6 +44,6 @@ export class UserService {
   }
 
   public logout(): void {
-        localStorage.removeItem('access_token');
+      return localStorage.removeItem('access_token');
   }
 }
