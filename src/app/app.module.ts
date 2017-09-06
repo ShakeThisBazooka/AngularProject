@@ -5,13 +5,15 @@ import {AppComponent} from './app.component';
 import {SharedModule} from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { appRouting } from './app.routes';
-import { AuthService } from './shared/services/auth.service';
 import { UserService } from './shared/services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule, MdCardModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { JobService } from './shared/services/job.service';
+import { ApplicantService } from './shared/services/applicant.service';
+import { CompanyService } from './shared/services/company.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MdCardModule,
     FlexLayoutModule
   ],
-  providers: [AuthService, UserService, CookieService],
+  providers: [ UserService, JobService, ApplicantService, CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

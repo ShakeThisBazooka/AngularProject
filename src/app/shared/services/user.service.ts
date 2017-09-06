@@ -1,39 +1,49 @@
 import { Injectable } from '@angular/core';
-
-import { Observable } from 'rxjs/Observable';
-import { Http, Headers, Response } from '@angular/http';
+import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import { User } from '../models/user';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+import { environment } from '../../../environments/environment';
+import { handleError } from './miscellaneous';
 
 @Injectable()
 export class UserService {
-  private headers = new Headers({ 'Content-Type': 'application/json' });
-
-  private registerUrl = '/api/users';
-  private loginUrl = '/api/authenticate';
-  private logoutUrl = '/api/logout';
-  private profileUrl = '/api/users/';
 
   constructor(private http: Http) { }
 
-  registerUser(user: User): Observable<Response> {
-    return this.http.post(this.registerUrl, JSON.stringify(user), {
-      headers: this.headers
-    }).map((res) => res.json());
+  public login(user: User): Observable<any> {
+        return this.http.post(`${environment.apiEndpoint}/login`, user)
+        .map((res) => {
+            localStorage.setItem('access_token', res.json().token);
+            localStorage.setItem('user_role', res.json().role);
+            localStorage.setItem('user_name', res.json().name);
+            localStorage.setItem('user_id', res.json()._id);
+            localStorage.setItem('user_info', res.json().info);
+        }).catch((error: Response) => handleError(error));
   }
 
-  loginUser(user: User): Observable<Response> {
-    return this.http.post(this.loginUrl, JSON.stringify({
-      username: user.name, password: user.password
-    }), {
-      headers: this.headers
-    }).map((res) => res.json());
+  public register(user: User) {
+        return this.http
+            .post(`${environment.apiEndpoint}/register`, user)
+            .map((res) => res.json());
   }
 
-  logoutUser(): Observable<Response> {
-    return this.http.get(this.logoutUrl).map((res) => res.json());
+  public getUserInfo(): User {
+        const userInfo: User = new User();
+        userInfo.name = localStorage.getItem('user_name');
+        userInfo.userId = localStorage.getItem('user_id');
+        userInfo.role = localStorage.getItem('user_role');
+        userInfo.info = localStorage.getItem('user_info');
+        return userInfo;
   }
 
-  getProfile(id: string): Observable<Response> {
-    return this.http.get(this.profileUrl + id).map((res) => res.json());
+  public getLoggedIn(): boolean {
+        return localStorage.getItem('access_token') ? true : false;
+  }
+
+  public logout(): void {
+        localStorage.removeItem('access_token');
   }
 }

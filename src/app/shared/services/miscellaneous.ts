@@ -10,7 +10,7 @@ export function handleError(error: Response) {
 export function getHeaders() {
         const headers: Headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', `${localStorage.getItem('cookie')}`);
+        headers.append('Token', `${localStorage.getItem('access_token')}`);
         headers.append('Accept', 'application/json');
         return new RequestOptions({headers: headers});
 }

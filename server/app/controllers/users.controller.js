@@ -30,7 +30,7 @@ const usersController = (data) => {
             userId: newuser.ops[0]._id,
             role: newuser.ops[0].role
           }
-          return res.send({success: true, user});
+          return res.send(user);
         })
         .catch((err) => {
           return res.status(400).json({errorMsg: err})
@@ -56,7 +56,7 @@ const usersController = (data) => {
             });
 
             user.token = token;
-            return res.send({success: true, message: 'login success!', user});
+            return res.send(user);
           })
           .catch((error) => {
             res.send({errorMsg: error})
