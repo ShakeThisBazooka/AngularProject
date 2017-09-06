@@ -8,7 +8,7 @@ const applicantController = (data) => {
 
             return data.applicants.getByUserId(userId).then((applicant) => {
                 console.log(applicant);
-                return res.send({success: true, applicant});
+                return res.send(applicant);
             });
         },
 
@@ -24,7 +24,7 @@ const applicantController = (data) => {
                 console.log(applicantToUpdate);
 
                 return data.applicants.updateCurrentApplicant(applicantToUpdate).then((applicant) => {
-                    return res.send({success: true, applicant});
+                    return res.send(applicant);
                 });
             });
         },
@@ -34,7 +34,7 @@ const applicantController = (data) => {
 
             return data.applicants.create(req.body)
             .then((newApplicant) => {
-              return res.send({success: true, newApplicant});
+              return res.send(newApplicant);
             })
             .catch((err) => {
               return res.status(400).json({errorMsg: err})

@@ -39,7 +39,7 @@ class ApplicantData extends BaseData {
     return this.collection.findOne({
       userId: applicant.userId,
     }).then((appl) => {
-        this.collection.updateOne({ userId: applicant.userId }, 
+        return this.collection.updateOne({ userId: applicant.userId }, 
         { $set: 
           { 
             'jobs': applicant.jobs, 
@@ -47,7 +47,8 @@ class ApplicantData extends BaseData {
             'lastName': applicant.lastName
           }
         }, { upsert: true });
-        return appl;
+    }).then(() => {
+      return this.ModelClass.toViewModel(applicant)
     });
   }
 
