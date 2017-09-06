@@ -1,15 +1,31 @@
-const applicantController = () => {
+const applicantController = (data) => {
     return {
         getById(req, res) {
-            const id = req.body.id;
+            const userId = req.params.id;
+            console.log(userId);
 
-            return data.users.findById(id)
+            return data.applicants.getByUserId(userId).then((applicant) => {
+                return res.send({success: true, applicant});
+            });
+        },
+
+        updateApplicant(req, res) {
+            const userId = req.params.id;
+
+            const foundApplicant = data.applicants.getByUserId(userId).then((appl) => {
+                if(appl === undefined){
+                    return Promise.reject('no applicant');
+                }
+
+                return data.applicants.updateApplicant(userId);
+            });
         },
 
         createApplicant(req, res) {
-            const applicant = req.body.applicant;
-            
-            return data.applicants.create(applicant)
+            const applicant = req.body;
+            console.log(applicant);
+
+            return data.applicants.create(req.body)
             .then((newApplicant) => {
               return res.send({success: true, newApplicant});
             })

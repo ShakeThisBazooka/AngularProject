@@ -1,16 +1,20 @@
 const ObjectId = require('mongodb').ObjectID;
 
-const BaseData = require('./base/base.data');
+const BaseData = require('../base/base.data');
 const Applicant = require('../models/applicant.model');
 
 class ApplicantData extends BaseData {
   constructor(db) {
-    super(db, Applicant);
+    super(db, Applicant, Applicant);
   }
 
   create(applicant) {
     if (!this._isModelValid(applicant)) {
       return Promise.reject('Invalid applicant');
+    }
+    if(applicant === undefined){
+        console.log(applicant);
+        return Promise.reject('Undefined applicant');
     }
     return this.collection.findOne({
       userId: applicant.userId,
@@ -22,6 +26,10 @@ class ApplicantData extends BaseData {
     }).then(() => {
       return this.ModelClass.toViewModel(applicant);
     });
+  }
+
+  getByUserId(id) {
+    return this.collection.findOne({ userId: id });
   }
 }
 
