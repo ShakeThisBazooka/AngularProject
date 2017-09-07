@@ -18,6 +18,8 @@ class JobsData extends BaseData {
       if (jobExist) {
         return Promise.reject('Jobs already taken!');
       }
+
+      job.applicants = [];
       return this.collection.insert(job);
     }).then(() => {
       return this.ModelClass.toViewModel(job);
@@ -33,16 +35,32 @@ class JobsData extends BaseData {
       });
   }
 
+  deleteApplicant(job, applicant) {
+    job.applicants.pop(applicant);
+  }
+
   addPassedApplicantToJob(jobId, applicant) {
     return this.collection.getById(jobId)
     .then((job) => {
-      if(job.applicants === undefined) {
-        job.applicants = [];
-      }
-
       job.applicants.push(applicant);
       return job.applicants;
     });
+  }
+
+  updateJob(job) {
+    return this.collection.updateOne({ title: job.title }, 
+      { $set: 
+        { 
+          'title': job.title, 
+          'description': job.description, 
+          'companyInfo': job.companyInfo,
+          'requirements': job.requirements,
+          'benefits': job.benefits,
+          'engagement': job.engagement,
+          'location': job.location,
+          'job.category': job.category
+        }
+      }, { upsert: true });
   }
 
 }
