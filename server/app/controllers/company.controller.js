@@ -1,4 +1,3 @@
-
 const companyController = (data) => {
     return {
         getById(req, res) {
