@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { environment } from '../../../environments/environment';
+
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { getHeaders, handleError } from './miscellaneous';
+
 import { Company } from '../models/company';
+import { Injectable } from '@angular/core';
 import { Job } from '../models/job';
+import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class CompanyService {
@@ -67,6 +69,4 @@ export class CompanyService {
           .map((res) => res.json())
           .catch((err: Response) => handleError(err));
   }
-
-
 }
