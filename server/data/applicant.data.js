@@ -55,6 +55,36 @@ class ApplicantData extends BaseData {
   getByUserId(id) {
     return this.collection.findOne({ userId: id });
   }
+
+  deleteCurrentApplicant(id) {
+    return this.collection.getById(id)
+     .then((applicant) => {
+       return this.collection.remove(applicant);
+     });
+  }
+
+  getJobsOfApplicant(id) {
+    return this.collection.getById(id)
+     .then((applicant) => {
+       if(applicant.jobs === undefined){
+         applicant.jobs = [];
+       }
+
+       return applicant.jobs;
+     }); 
+  }
+
+  addPassedJobToApplicant(appId, job) {
+    return this.collection.getById(appId)
+     .then((applicant) => {
+       if(applicant.jobs === undefined) {
+         applicant.jobs = [];
+       }
+
+       applicant.jobs.push(job);
+       return applicant.jobs;
+     });
+  }
 }
 
 module.exports = ApplicantData;

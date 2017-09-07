@@ -1,11 +1,11 @@
 const ObjectId = require('mongodb').ObjectID;
 
 const BaseData = require('./base/base.data');
-const Job = require('../models/job.model');
+const Job = require('./models/job.model');
 
 class JobsData extends BaseData {
   constructor(db) {
-    super(db, Job);
+    super(db, Job, Job);
   }
 
   create(job) {
@@ -31,6 +31,18 @@ class JobsData extends BaseData {
       .then((id) => {
         this.collection.deleteOne(id);
       });
+  }
+
+  addPassedApplicantToJob(jobId, applicant) {
+    return this.collection.getById(jobId)
+    .then((job) => {
+      if(job.applicants === undefined) {
+        job.applicants = [];
+      }
+
+      job.applicants.push(applicant);
+      return job.applicants;
+    });
   }
 
 }

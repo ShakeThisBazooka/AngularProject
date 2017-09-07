@@ -15,10 +15,10 @@ class UsersData extends BaseData {
       return Promise.reject('Invalid user');
     }
     return this.collection.findOne({
-      name: user.name,
+      email: user.email,
     }).then((userExists) => {
       if (userExists) {
-        return Promise.reject('Username already taken!');
+        return Promise.reject('Email already taken!');
       }
       user.password = CryptoJS.SHA1(user.password).toString();
       return this.collection.insert(user);

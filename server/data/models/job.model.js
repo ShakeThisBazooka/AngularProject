@@ -1,10 +1,6 @@
-const MIN_JOB_LENGTH = 5;
-const MAX_JOB_LENGTH = 50;
-
-//TITLE,Description,companyInfo,Requirements,Benefits
-
-class Job {
-  static validateModel(job) {
+const BaseModel = require('../../models/base/base.model');
+class Job extends BaseModel {
+  static isValid(job) {
 
     if (typeof job === 'undefined') {
       return Promise.reject('Job is undefined!');
