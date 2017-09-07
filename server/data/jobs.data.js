@@ -13,19 +13,18 @@ class JobsData extends BaseData {
       return Promise.reject('Invalid job');
     }
     return this.collection.findOne({
-      title: job.title,
+      name: job.name,
     }).then((jobExist) => {
       if (jobExist) {
         return Promise.reject('Jobs already taken!');
       }
-
-      job.applicants = [];
       return this.collection.insert(job);
     }).then(() => {
       return this.ModelClass.toViewModel(job);
     });
   }
 
+<<<<<<< 55ae06a6960274669d73865921483517e210098e
   updateJob(job) {
     if (!this._isModelValid(job)) {
       return Promise.reject('Invalid job');
@@ -64,32 +63,29 @@ class JobsData extends BaseData {
   }
 
   delete(jobId) {
+=======
+  delete(job) {
+>>>>>>> Finished with applicants routes.
     return this.collection.findOne({
-      _id: jobId,
+      id: job.id,
     })
-     .then((company) => {
-       return this.collection.remove(company);
-     });
+      .then((id) => {
+        this.collection.deleteOne(id);
+      });
   }
 
-  deleteApplicant(job, applicant) {
-     return this.collection.update(
-      { _id: job._id },
-      { $pull: { 'jobs.applicants': { userId: applicant.userId } } }
-     )
-     .then((res) => {
-       return res;
-     })
-  }
+  addPassedApplicantToJob(jobId, applicant) {
+    return this.collection.getById(jobId)
+    .then((job) => {
+      if(job.applicants === undefined) {
+        job.applicants = [];
+      }
 
-  addPassedApplicantToJob(id, applicant) {
-    return this.collection.update(
-      { _id: id},
-      { $addToSet: { applicants: applicant } }
-    ).then((res) => {
-      return res;
+      job.applicants.push(applicant);
+      return job.applicants;
     });
   }
+
 }
 
 module.exports = JobsData;
