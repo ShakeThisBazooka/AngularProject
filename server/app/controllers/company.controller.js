@@ -37,17 +37,18 @@ const companyController = (data) => {
         },
 
         deleteCompany(req, res) {
-            const companyId = req.params.id;
-            const company = data.companies.getById(companyId);
-
-            company.jobs.forEach((job) => {
-                job.applicants.forEach((applicant) => {
-                    data.jobs.deleteApplicant(job, applicant);
+            const userId = req.params.id;
+            data.companies.getByUserId(userId)
+                .then((company) => {
+                    company.jobs.forEach((job) => {
+                        job.applicants.forEach((applicant) => {
+                            data.jobs.deleteApplicant(job, applicant);
+                        });
+                        data.jobs.delete(job);
+                    });
                 });
-                data.jobs.delete(job);
-            });
 
-            return data.companies.deleteCurrentCompany(companyId)
+            return data.companies.deleteCurrentCompany(userId)
              .then(() => {
                  return res.status(200).json({success: true});
              })
@@ -69,10 +70,10 @@ const companyController = (data) => {
         },
 
         addJob(req, res) {
-            const companyId = req.params.id;
+            const userId = req.params.id;
             const job = req.body;
 
-            return data.companies.addJobToCompany(companyId, job)
+            return data.companies.addJobToCompany(userId, job)
              .then((company) => {
                  return res.status(200).json(company);
              })

@@ -64,7 +64,7 @@ class CompaniesData extends BaseData {
 
   getJobsOfCompany(id) {
     return this.collection.findOne({
-      userId: id,
+      userId: id
     })
      .then((company) => {
        return company.jobs;
@@ -72,12 +72,18 @@ class CompaniesData extends BaseData {
   }
 
   addJobToCompany(id, job) {
-      return this.collection.findOne({
-      userId: id,
-    }).then((company) => {
-           company.jobs.push(job);
-           return company;
-       });
+    return this.getByUserId(id)
+    .then((company) => {
+      return this.collection.update({
+        _id: company._id
+      }, {$addToSet: {jobs: job }})
+    })
+    .then(() => {
+      return this.getByUserId(id)
+        .then((comp) => {
+          return this.ModelClass.toViewModel(comp);
+        });
+    })
   }
 
   updateJobsOfCompany(companyId, jobId, jobToUpdate, jobs) {
