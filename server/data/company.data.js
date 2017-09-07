@@ -3,9 +3,9 @@ const ObjectId = require('mongodb').ObjectID;
 const BaseData = require('./base/base.data');
 const Company = require('./models/company.model');
 
-class CompanyData extends BaseData {
+class CompaniesData extends BaseData {
   constructor(db) {
-    super(db, Company, CompanyData);
+    super(db, Company, Company);
   }
 
   create(company) {
@@ -54,24 +54,29 @@ class CompanyData extends BaseData {
   }
 
   deleteCurrentCompany(id) {
-    return this.collection.getById(id)
+    return this.collection.findOne({
+      userId: id,
+    })
      .then((company) => {
        return this.collection.remove(company);
      });
   }
 
   getJobsOfCompany(id) {
-    return this.collection.getById(id)
+    return this.collection.findOne({
+      userId: id,
+    })
      .then((company) => {
        return company.jobs;
      }); 
   }
 
   addJobToCompany(id, job) {
-      return this.collection.getById(id)
-       .then((company) => {
+      return this.collection.findOne({
+      userId: id,
+    }).then((company) => {
            company.jobs.push(job);
-           return company.jobs;
+           return company;
        });
   }
 
@@ -89,4 +94,4 @@ class CompanyData extends BaseData {
   }
 }
 
-module.exports = CompanyData;
+module.exports = CompaniesData;

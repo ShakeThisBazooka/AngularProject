@@ -46,11 +46,8 @@ export class CompanyService {
       .catch((err: Response) => handleError(err));
   }
 
-  public addJob(companyId: string, job: Job): Observable<Job> {
-    const newJob = {
-      companyId, job
-    };
-    return this.http.post(`${environment.apiEndpoint}/company/${companyId}/jobs`, newJob, getHeaders())
+  public addJob(job: Job): Observable<Job> {
+    return this.http.post(`${environment.apiEndpoint}/company/${job.companyId}/jobs`, job, getHeaders())
           .map((res) => res.json())
           .catch((err: Response) => handleError(err));
   }

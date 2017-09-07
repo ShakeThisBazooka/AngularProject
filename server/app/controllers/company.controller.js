@@ -1,9 +1,10 @@
+
 const companyController = (data) => {
     return {
         getById(req, res) {
             const userId = req.params.id;
 
-            return data.companys.getByUserId(userId).then((company) => {
+            return data.companies.getByUserId(userId).then((company) => {
                 return res.send(company);
             });
         },
@@ -12,12 +13,12 @@ const companyController = (data) => {
             const userId = req.params.id;
             const companyToUpdate = req.body;
 
-            const foundCompany = data.companys.getByUserId(userId).then((company) => {
+            const foundCompany = data.companies.getByUserId(userId).then((company) => {
                 if(company === undefined){
                     return Promise.reject('no company');
                 }
 
-                return data.companys.updateCurrentCompany(companyToUpdate).then((comp) => {
+                return data.companies.updateCurrentCompany(companyToUpdate).then((comp) => {
                     return res.send(comp);
                 });
             });
@@ -26,7 +27,7 @@ const companyController = (data) => {
         createCompany(req, res) {
             const company = req.body;
 
-            return data.companys.create(req.body)
+            return data.companies.create(req.body)
             .then((newCompany) => {
               return res.send(newCompany);
             })
@@ -37,7 +38,7 @@ const companyController = (data) => {
 
         deleteCompany(req, res) {
             const companyId = req.params.id;
-            const company = data.companys.getById(companyId);
+            const company = data.companies.getById(companyId);
 
             company.jobs.forEach((job) => {
                 job.applicants.forEach((applicant) => {
@@ -46,7 +47,7 @@ const companyController = (data) => {
                 data.jobs.delete(job);
             });
 
-            return data.companys.deleteCurrentCompany(companyId)
+            return data.companies.deleteCurrentCompany(companyId)
              .then(() => {
                  return res.status(200).json({success: true});
              })
@@ -58,9 +59,9 @@ const companyController = (data) => {
         getJobs(req, res) {
             const companyId = req.params.id;
 
-            return data.companys.getJobsOfCompany(companyId)
+            return data.companies.getJobsOfCompany(companyId)
              .then((jobs) => {
-                 return res.status(200).json({success: true, jobs});
+                 return res.status(200).json({jobs: jobs});
              })
              .catch((err) => {
                  return res.status(400).json({errorMsg: err});
@@ -71,9 +72,9 @@ const companyController = (data) => {
             const companyId = req.params.id;
             const job = req.body;
 
-            return data.companys.addJobToCompany(companyId, job)
-             .then((jobs) => {
-                 return res.status(200).json({success: true, jobs});
+            return data.companies.addJobToCompany(companyId, job)
+             .then((company) => {
+                 return res.status(200).json(company);
              })
              .catch((err) => {
                  return res.status(400).json({errorMsg: err});
@@ -85,7 +86,7 @@ const companyController = (data) => {
             const jobId = req.params.jid;
             const jobToUpdate = req.body;
 
-            return data.companys.updateJobsOfCompany(companyId, jobId, jobToUpdate, data.jobs)
+            return data.companies.updateJobsOfCompany(companyId, jobId, jobToUpdate, data.jobs)
               .then((jobs) => {
                   return res.status(200).json({success: true, jobs});
               })
@@ -96,4 +97,4 @@ const companyController = (data) => {
     };
   };
 
-  module.exports = applicantController;
+  module.exports = companyController;

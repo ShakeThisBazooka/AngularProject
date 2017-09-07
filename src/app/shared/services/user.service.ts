@@ -40,7 +40,7 @@ export class UserService {
   }
 
   public getLoggedIn(): boolean {
-        return localStorage.getItem('access_token') ? true : false;
+      return localStorage.getItem('access_token') ? true : false;
   }
 
   public logout(): void {

@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectID;
 const BaseData = require('./base/base.data');
 const Applicant = require('./models/applicant.model');
 
-class ApplicantData extends BaseData {
+class ApplicantsData extends BaseData {
   constructor(db) {
     super(db, Applicant, Applicant);
   }
@@ -81,4 +81,4 @@ class ApplicantData extends BaseData {
   }
 }
 
-module.exports = ApplicantData;
+module.exports = ApplicantsData;

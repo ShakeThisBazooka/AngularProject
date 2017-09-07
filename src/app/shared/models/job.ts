@@ -4,7 +4,7 @@ import { Company } from './company';
 export class Job {
     id: string;
     title: string;
-    company: Company;
+    companyId: string;
     applicants: Applicant[];
     description: string;
     companyInfo: string;
