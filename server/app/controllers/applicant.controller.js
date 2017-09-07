@@ -44,6 +44,12 @@ const applicantController = (data) => {
         deleteApplicant(req, res) {
             const applicantId = req.params.id;
 
+            const applicant = data.applicants.getById(applicantId);
+
+            applicant.jobs.forEach((job) => {
+                data.jobs.deleteApplicant(job, applicant);
+            });
+
             return data.applicants.deleteCurrentApplicant(applicantId)
              .then(() => {
                  return res.status(200).json({success: true});

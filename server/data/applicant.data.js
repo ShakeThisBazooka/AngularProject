@@ -22,6 +22,8 @@ class ApplicantData extends BaseData {
       if (applicantExist) {
         return Promise.reject('Applicant exists !');
       }
+
+      applicant.jobs = [];
       return this.collection.insert(applicant);
     }).then(() => {
       return this.ModelClass.toViewModel(applicant);
@@ -66,10 +68,6 @@ class ApplicantData extends BaseData {
   getJobsOfApplicant(id) {
     return this.collection.getById(id)
      .then((applicant) => {
-       if(applicant.jobs === undefined){
-         applicant.jobs = [];
-       }
-
        return applicant.jobs;
      }); 
   }
@@ -77,10 +75,6 @@ class ApplicantData extends BaseData {
   addPassedJobToApplicant(appId, job) {
     return this.collection.getById(appId)
      .then((applicant) => {
-       if(applicant.jobs === undefined) {
-         applicant.jobs = [];
-       }
-
        applicant.jobs.push(job);
        return applicant.jobs;
      });

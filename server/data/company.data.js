@@ -18,6 +18,8 @@ class CompanyData extends BaseData {
       if (companyExist) {
         return Promise.reject('Company already taken!');
       }
+
+      company.jobs = [];
       return this.collection.insert(company);
     }).then(() => {
       return this.ModelClass.toViewModel(company);
@@ -61,12 +63,29 @@ class CompanyData extends BaseData {
   getJobsOfCompany(id) {
     return this.collection.getById(id)
      .then((company) => {
-       if(company.jobs === undefined){
-         company.jobs = [];
-       }
-
        return company.jobs;
      }); 
+  }
+
+  addJobToCompany(id, job) {
+      return this.collection.getById(id)
+       .then((company) => {
+           company.jobs.push(job);
+           return company.jobs;
+       });
+  }
+
+  updateJobsOfCompany(companyId, jobId, jobToUpdate, jobs) {
+      return this.collection.getById(id)
+        .then((comp) => {
+            comp.jobs.forEach((job) => {
+                if(job.id === jobId) {
+                    jobs.updateJob(job);
+                }
+            });
+
+            return comp.jobs;
+        });
   }
 }
 

@@ -37,6 +37,14 @@ const companyController = (data) => {
 
         deleteCompany(req, res) {
             const companyId = req.params.id;
+            const company = data.companys.getById(companyId);
+
+            company.jobs.forEach((job) => {
+                job.applicants.forEach((applicant) => {
+                    data.jobs.deleteApplicant(job, applicant);
+                });
+                data.jobs.delete(job);
+            });
 
             return data.companys.deleteCurrentCompany(companyId)
              .then(() => {
@@ -57,6 +65,33 @@ const companyController = (data) => {
              .catch((err) => {
                  return res.status(400).json({errorMsg: err});
              });
+        },
+
+        addJob(req, res) {
+            const companyId = req.params.id;
+            const job = req.body;
+
+            return data.companys.addJobToCompany(companyId, job)
+             .then((jobs) => {
+                 return res.status(200).json({success: true, jobs});
+             })
+             .catch((err) => {
+                 return res.status(400).json({errorMsg: err});
+             });
+        },
+
+        updateJob(req, res) {
+            const companyId = req.params.cid;
+            const jobId = req.params.jid;
+            const jobToUpdate = req.body;
+
+            return data.companys.updateJobsOfCompany(companyId, jobId, jobToUpdate, data.jobs)
+              .then((jobs) => {
+                  return res.status(200).json({success: true, jobs});
+              })
+              .catch((err) => {
+                  return res.status(400).json({errorMsg: err});
+              });
         }
     };
   };
