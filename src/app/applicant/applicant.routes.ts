@@ -1,27 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ApplicantGuard } from 'app/applicant/guards/applicant.guard';
-import { DashboardComponent } from 'app/shared/dashboard.component';
+import { ApplicantProfileComponent } from './components/applicant-profile/applicant-profile.component';
+import { DashboardComponent } from '../shared/dashboard.component';
+import { ApplicantGuard } from './guards/applicant.guard';
 
 
 const applicantRoutes: Routes = [
 
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     {
-        path: 'dashboard', component: DashboardComponent, canActivate: [ApplicantGuard],
+        path: '', component: DashboardComponent,
         children: [
-            /*APPLICANT ROUTES GO HERE*/
-            /**
-             * We should implement at least the following:
-             * PROFILE
-             * EDIT-PROFILE
-             * SUBMIT APPLICATION (like applying for a job in a way, probably in a form format)
-             * APPLICATIONS LIST (listing all applications of this applicant)
-             */
+            { path: '', redirectTo: 'profile', pathMatch: 'full' },
+            { path: 'profile', component: ApplicantProfileComponent },
         ]
     }
 
 ];
 
 export const applicantRouting = RouterModule.forChild(applicantRoutes);
+

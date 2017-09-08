@@ -3,7 +3,7 @@ const BaseModel = require('../../models/base/base.model');
 class Applicant extends BaseModel {
   static isValid(applicant) {
 
-    if (typeof applicant === 'undefined') {
+    if (typeof applicant === undefined) {
       return Promise.reject('Applicant is undefined!');
     }
 

@@ -13,8 +13,9 @@ import { UserService } from '../../../shared/services/user.service';
 export class RegisterComponent implements OnInit {
 
     public form: FormGroup;
-    public user: User = new User();
-    public isRoleSelected: boolean = false;
+    public role: string;
+    public userId: string;
+    public onRegisteredUser = false;
 
     public constructor(private router: Router,
     private userService: UserService) { }
@@ -23,9 +24,10 @@ export class RegisterComponent implements OnInit {
   }
 
 
-    public assignRole(role: string) {
-      this.user.role = role;
-      this.isRoleSelected = true;
+    public assign(user: User) {
+      this.role = user.role;
+      this.userId = user.userId;
+      this.onRegisteredUser = true;
     }
 
 }

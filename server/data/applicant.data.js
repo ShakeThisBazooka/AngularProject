@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectID;
 const BaseData = require('./base/base.data');
 const Applicant = require('./models/applicant.model');
 
-class ApplicantData extends BaseData {
+class ApplicantsData extends BaseData {
   constructor(db) {
     super(db, Applicant, Applicant);
   }
@@ -22,6 +22,8 @@ class ApplicantData extends BaseData {
       if (applicantExist) {
         return Promise.reject('Applicant exists !');
       }
+
+      applicant.jobs = [];
       return this.collection.insert(applicant);
     }).then(() => {
       return this.ModelClass.toViewModel(applicant);
@@ -55,6 +57,28 @@ class ApplicantData extends BaseData {
   getByUserId(id) {
     return this.collection.findOne({ userId: id });
   }
+
+  deleteCurrentApplicant(id) {
+    return this.collection.getById(id)
+     .then((applicant) => {
+       return this.collection.remove(applicant);
+     });
+  }
+
+  getJobsOfApplicant(id) {
+    return this.collection.getById(id)
+     .then((applicant) => {
+       return applicant.jobs;
+     }); 
+  }
+
+  addPassedJobToApplicant(appId, job) {
+    return this.collection.getById(appId)
+     .then((applicant) => {
+       applicant.jobs.push(job);
+       return applicant.jobs;
+     });
+  }
 }
 
-module.exports = ApplicantData;
+module.exports = ApplicantsData;

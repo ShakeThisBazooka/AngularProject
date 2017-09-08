@@ -14,7 +14,7 @@
       <md-icon>person</md-icon>
     </button>
     <md-menu #user="mdMenu" x-position="before">
-      <button *ngIf="isLoggedIn" md-menu-item>
+      <button *ngIf="isLoggedIn" (click)="navigate()" md-menu-item>
         <md-icon>account_box</md-icon>
         Profile
       </button>

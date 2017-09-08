@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../../../shared/models/user';
+import { UserService } from '../../../../shared/services/user.service';
 
 @Component({
   selector: 'app-register-step-1',
@@ -9,13 +10,18 @@ import { User } from '../../../../shared/models/user';
 })
 export class RegisterStep1Component implements OnInit {
 
-  @Output() onRoleSelected = new EventEmitter<string>();
+  @Output() onUserRegistered = new EventEmitter<User>();
   public formStepOne: FormGroup;
   public user: User = new User();
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.formStepOne = new FormGroup({
-            role: new FormControl('', Validators.compose([Validators.required]))
+            name: new FormControl('', Validators.compose([Validators.required])),
+            email: new FormControl('', [Validators.required, Validators.email]),
+            role: new FormControl('', Validators.compose([Validators.required])),
+            password: new FormControl('', Validators.compose([Validators.required,
+              Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$')])),
+            info: new FormControl('', Validators.compose([Validators.required]))
         });
    }
 
@@ -23,7 +29,11 @@ export class RegisterStep1Component implements OnInit {
   }
 
   onSubmit() {
-    this.onRoleSelected.emit(this.user.role);
+    this.userService.register(this.user)
+        .subscribe((user: User) => {
+          console.log('Successfully registered!');
+          this.onUserRegistered.emit(user);
+        });
   }
 
 }

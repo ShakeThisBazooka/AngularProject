@@ -1,2 +1,2 @@
-<app-register-step-1 *ngIf="!isRoleSelected" (onRoleSelected)="assignRole($event)"></app-register-step-1>
-<app-register-step-2 *ngIf="isRoleSelected" [userRole]="user.role"></app-register-step-2>
+ <app-register-step-1 *ngIf="!onRegisteredUser" (onUserRegistered)="assign($event)"></app-register-step-1>
+<app-register-step-2 *ngIf="onRegisteredUser" [role]="role" [id]="userId"></app-register-step-2> 

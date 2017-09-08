@@ -14,7 +14,7 @@ import { UserService } from '../../../shared/services/user.service';
 export class LoginComponent implements OnInit {
 
 
-  public form: FormGroup;
+    public form: FormGroup;
     public user: User = new User();
     public error: string;
     public isLoading = false;
@@ -35,8 +35,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("onSUbmit");
     this.userService.login(this.user)
-      .subscribe(() => {
+      .subscribe((res) => {
+        console.log("login", res);
         this.router.navigateByUrl('jobs');
       });
   }
