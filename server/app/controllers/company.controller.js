@@ -105,6 +105,22 @@ const companyController = (data) => {
                     });
                   });
               });
+        },
+
+        deleteJob(req, res) {
+            const userId = req.params.cid;
+            const jobId = req.params.jid;
+
+            return data.jobs.delete(jobId)
+              .then(() => {
+                return data.companies.deleteJobOfCompany(userId, jobId)
+                .then(() => {
+                    return res.status(200).json({success: true});
+                })
+                .catch((err) => {
+                    return res.status(400).json({errorMsg: err});
+                })
+              });
         }
     };
   };

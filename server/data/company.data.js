@@ -87,9 +87,8 @@ class CompaniesData extends BaseData {
   }
 
   updateJobsOfCompany(userId, jobToUpdate) {
-    console.log(jobToUpdate);
         return this.collection.update(
-          { _id: userId, jobs: { $elemMatch: { companyId: jobToUpdate.companyId } } },
+          { userId: userId, jobs: { $elemMatch: { companyId: jobToUpdate.companyId } } },
           { $set: {
             'jobs.$.title': jobToUpdate.title, 
             'jobs.$.description': jobToUpdate.description, 
@@ -103,6 +102,16 @@ class CompaniesData extends BaseData {
         ).then((res) => {
           return res;
         });
+  }
+
+  deleteJobOfCompany(userId, jobId) {
+    return this.collection.update(
+      {userId: userId},
+      {$pull: {'jobs': {'_id': jobId}}}
+    )
+    .then((res) => {
+      return res;
+    })
   }
 }
 
