@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 
 
 const attachTo = (app) => {
+  app.use(require('./cross-domain'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded( { extended: true } ));
 
