@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { companyRouting } from './company.routes';
 import { SharedModule } from '../shared/shared.module';
 import { CompanyGuard } from './guards/company.guard';
+import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
 
 
 @NgModule({
@@ -11,7 +12,7 @@ import { CompanyGuard } from './guards/company.guard';
     SharedModule,
     companyRouting
   ],
-  declarations: [],
+  declarations: [CompanyProfileComponent],
   providers: [CompanyGuard]
 })
 export class CompanyModule { }

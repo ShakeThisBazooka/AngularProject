@@ -15,18 +15,24 @@ export class HeaderComponent implements OnInit {
   constructor(private userService: UserService,
             private router: Router) {
 
-              if (this.userService.getLoggedIn) {
+              if (this.userService.getLoggedIn()) {
                 this.isLoggedIn = true;
               }
+
     }
 
   ngOnInit() {
+    console.log(this.userService.getUserInfo().role);
+  }
+
+  public navigate() {
+    this.router.navigate([this.userService.getUserInfo().role]);
   }
 
   logout() {
     this.userService.logout();
     this.isLoggedIn = false;
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('front');
   }
 
 

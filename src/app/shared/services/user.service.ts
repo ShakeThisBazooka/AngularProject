@@ -16,6 +16,7 @@ export class UserService {
   public login(user: User): Observable<any> {
         return this.http.post(`${environment.apiEndpoint}/login`, user)
         .map((res) => {
+            console.log("res", res.json());
             localStorage.setItem('access_token', res.json().token);
             localStorage.setItem('user_role', res.json().role);
             localStorage.setItem('user_name', res.json().name);
