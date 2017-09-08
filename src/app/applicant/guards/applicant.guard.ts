@@ -11,17 +11,10 @@ export class ApplicantGuard implements CanActivate {
   }
 
   public canActivate(): Observable<boolean> | boolean {
-    if (!this.userService.getLoggedIn()) {
-      this.router.navigate(['auth/login']);
-      return false;
-    } else {
-      if (this.userService.getUserInfo().role === 'applicant') {
-        this.router.navigate(['applicant/profile']);
-        return true;
+      if (this.userService.getUserInfo().role !== 'applicant') {
+        this.router.navigate(['home']);
+        return false;
       }
-      this.router.navigate(['home']);
-      return false;
+        return true;
     }
-
-  }
 }

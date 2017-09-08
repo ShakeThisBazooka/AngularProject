@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
     }
 
   ngOnInit() {
-    console.log(this.userService.getUserInfo().role);
   }
 
   public navigate() {
@@ -30,9 +29,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    this.router.navigateByUrl('home');
     this.userService.logout();
     this.isLoggedIn = false;
-    this.router.navigateByUrl('front');
   }
 
 
