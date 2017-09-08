@@ -33,7 +33,7 @@ class JobsData extends BaseData {
     if(job === undefined){
         return Promise.reject('Undefined job');
     }
-    //console.log(job);
+    
     return this.collection.findOne({ _id: ObjectId(job._id) })
       .then(() => {
         return this.collection.updateOne({ _id: job._id }, 
@@ -63,24 +63,31 @@ class JobsData extends BaseData {
       });
   }
 
-  delete(job) {
+  delete(jobId) {
     return this.collection.findOne({
-      id: job.id,
+      _id: jobId,
     })
-      .then((id) => {
-        this.collection.deleteOne(id);
-      });
+     .then((company) => {
+       return this.collection.remove(company);
+     });
   }
 
   deleteApplicant(job, applicant) {
-    job.applicants.pop(applicant);
+     return this.collection.update(
+      { _id: job._id },
+      { $pull: { 'jobs.applicants': { userId: applicant.userId } } }
+     )
+     .then((res) => {
+       return res;
+     })
   }
 
-  addPassedApplicantToJob(jobId, applicant) {
-    return this.collection.getById(jobId)
-    .then((job) => {
-      job.applicants.push(applicant);
-      return job.applicants;
+  addPassedApplicantToJob(id, applicant) {
+    return this.collection.update(
+      { _id: id},
+      { $addToSet: { applicants: applicant } }
+    ).then((res) => {
+      return res;
     });
   }
 }
