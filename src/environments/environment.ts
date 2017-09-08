@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'https://evening-inlet-95185.herokuapp.com/api'
+  apiEndpoint: 'https://pluggingaway.herokuapp.com/api'
 };
