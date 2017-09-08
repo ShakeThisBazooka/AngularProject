@@ -9,7 +9,7 @@ import { CompanyProfileComponent } from './components/company-profile/company-pr
 
 const companyRoutes: Routes = [
     {
-        path: 'company', component: DashboardComponent, canActivate: [CompanyGuard],
+        path: '', component: DashboardComponent, canActivate: [CompanyGuard],
         children: [
             { path: '', redirectTo: 'profile', pathMatch: 'full' },
             { path: 'profile', component: CompanyProfileComponent },
