@@ -11,17 +11,10 @@ export class CompanyGuard implements CanActivate {
   }
 
   public canActivate(): Observable<boolean> | boolean {
-    if (!this.userService.getLoggedIn()) {
-      this.router.navigate(['auth/login']);
-      return false;
-    } else {
-      if (this.userService.getUserInfo().role === 'company') {
-        this.router.navigate(['company/profile']);
-        return true;
+      if (this.userService.getUserInfo().role !== 'company') {
+        this.router.navigate(['home']);
+        return false;
       }
-      this.router.navigate(['home']);
-      return false;
+        return true;
     }
-
-  }
 }

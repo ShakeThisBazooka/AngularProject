@@ -9,7 +9,7 @@ import { ApplicantGuard } from './guards/applicant.guard';
 const applicantRoutes: Routes = [
 
     {
-        path: '', component: DashboardComponent,
+        path: '', component: DashboardComponent, canActivate: [ApplicantGuard],
         children: [
             { path: '', redirectTo: 'profile', pathMatch: 'full' },
             { path: 'profile', component: ApplicantProfileComponent },
