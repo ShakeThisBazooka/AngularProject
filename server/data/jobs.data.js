@@ -55,6 +55,14 @@ class JobsData extends BaseData {
     });
   }
 
+  findByParams(query) {
+    console.log(query);
+    return this.collection.find(query).toArray()
+      .then((result) => {
+        return result;
+      });
+  }
+
   delete(job) {
     return this.collection.findOne({
       id: job.id,
