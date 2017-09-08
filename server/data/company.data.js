@@ -75,7 +75,7 @@ class CompaniesData extends BaseData {
     return this.getByUserId(id)
     .then((company) => {
       return this.collection.update({
-        _id: company._id
+        userId: company.userId
       }, {$addToSet: {jobs: job }})
     })
     .then(() => {
@@ -86,16 +86,22 @@ class CompaniesData extends BaseData {
     })
   }
 
-  updateJobsOfCompany(companyId, jobId, jobToUpdate, jobs) {
-      return this.collection.getById(id)
-        .then((comp) => {
-            comp.jobs.forEach((job) => {
-                if(job.id === jobId) {
-                    jobs.updateJob(job);
-                }
-            });
-
-            return comp.jobs;
+  updateJobsOfCompany(userId, jobToUpdate) {
+    console.log(jobToUpdate);
+        return this.collection.update(
+          { _id: userId, jobs: { $elemMatch: { companyId: jobToUpdate.companyId } } },
+          { $set: {
+            'jobs.$.title': jobToUpdate.title, 
+            'jobs.$.description': jobToUpdate.description, 
+            'jobs.$.companyInfo': jobToUpdate.companyInfo,
+            'jobs.$.requirements': jobToUpdate.requirements,
+            'jobs.$.benefits': jobToUpdate.benefits,
+            'jobs.$.location': jobToUpdate.location,
+            'jobs.$.category': jobToUpdate.category,
+            'jobs.$.engagement': jobToUpdate.engagement
+          }}
+        ).then((res) => {
+          return res;
         });
   }
 }
