@@ -35,11 +35,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("onSUbmit");
     this.userService.login(this.user)
-      .subscribe((res) => {
-        console.log("login", res);
-        this.router.navigateByUrl('jobs');
+      .subscribe(() => {
+        console.log('Successfully logged in!');
+        this.router.navigateByUrl(`home`);
       });
   }
 }
