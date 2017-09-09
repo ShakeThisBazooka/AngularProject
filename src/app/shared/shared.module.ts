@@ -12,6 +12,7 @@ import { ProfileInfoComponent } from './components/profile-info/profile-info.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileDataComponent } from './components/profile-data/profile-data.component';
 import { CdkTableModule } from '@angular/cdk';
+import { JobManipulationComponent } from './components/job-manipulation/job-manipulation.component';
 
 
 
@@ -39,12 +40,29 @@ import { CdkTableModule } from '@angular/cdk';
     ReactiveFormsModule,
     MdTableModule,
     CdkTableModule,
-    MdPaginatorModule,
+    MdPaginatorModule
+  ],
+  entryComponents: [
+    JobManipulationComponent
   ],
   exports: [
-    HeaderComponent, SideNavComponent, DashboardComponent, ProfileComponent, ProfileInfoComponent, ProfileDataComponent
+    HeaderComponent,
+    SideNavComponent,
+    DashboardComponent,
+    ProfileComponent,
+    ProfileInfoComponent,
+    ProfileDataComponent,
+    JobManipulationComponent
   ],
-  declarations: [DashboardComponent, HeaderComponent, SideNavComponent, ProfileComponent, ProfileInfoComponent, ProfileDataComponent]
+  declarations: [
+    DashboardComponent,
+    HeaderComponent,
+    SideNavComponent,
+    ProfileComponent,
+    ProfileInfoComponent,
+    ProfileDataComponent,
+    JobManipulationComponent
+  ]
 })
 export class SharedModule {
 }

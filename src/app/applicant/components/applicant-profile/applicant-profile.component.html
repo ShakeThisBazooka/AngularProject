@@ -4,10 +4,10 @@
   </div>
   <div fxFlex.gt-sm="75" fxFlex="100">
     <app-profile-data 
+        [navigate]="'/jobs/'"
         [jobsData]="jobs"
         [applicantView]="true"
         [jobsCount]="jobsCount"
-        (onDeleteJob)="deleteJob($event)"
     ></app-profile-data>
   </div>
 </div>

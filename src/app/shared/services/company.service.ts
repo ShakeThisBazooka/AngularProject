@@ -52,16 +52,13 @@ export class CompanyService {
           .catch((err: Response) => handleError(err));
   }
 
-  public updateJob(companyId: string, job: Job): Observable<Job> {
-    const updatedJob = {
-      companyId, job
-    };
-    return this.http.put(`${environment.apiEndpoint}/company/${companyId}/jobs/${job.id}`, updatedJob, getHeaders())
+  public updateJob(job: Job): Observable<Job> {
+    return this.http.put(`${environment.apiEndpoint}/company/${job.companyId}/jobs/${job._id}`, job, getHeaders())
           .map((res) => res.json())
           .catch((err: Response) => handleError(err));
   }
 
-  public deleteJob(companyId: string, jobId: Job): Observable<any> {
+  public deleteJob(companyId: string, jobId: string): Observable<any> {
     return this.http.put(`${environment.apiEndpoint}/company/${companyId}/jobs/${jobId}`, getHeaders())
           .map((res) => res.json())
           .catch((err: Response) => handleError(err));
