@@ -17,12 +17,10 @@
               <span>{{engagement.viewValue}}</span>
             </md-option>
           </md-select>
-
-           <p> Selected value: {{selectedLocation}}, {{selectedEngagement}}, {{selectedCategory}} </p> 
         </form>
   </md-toolbar-row>
   <md-toolbar-row fxLayout="row" fxLayoutAlign="center center"><button md-raised-button  color="accent" (click)="filterJobs(selectedLocation, selectedEngagement, selectedCategory)" class="mr-1">
-                Filter
+                Search
             </button>
   </md-toolbar-row>
 </md-toolbar>
@@ -40,11 +38,11 @@
                   {{ job.description }}
                 </md-card-content>
                 <md-card-subtitle>
-                  Posted by: {{ job.company.name }}
+                  Engagement: {{ job.engagement }}
                 </md-card-subtitle>
                 <hr>
                 <md-card-actions fxLayout="row" fxLayoutAlign="start stretch">
-                    <button [routerLink]="['/jobs/job']" color="primary" fxLayoutAlign="center center" fxFlex="100" md-button>
+                    <button [routerLink]="['/jobs/' + job._id]" color="primary" fxLayoutAlign="center center" fxFlex="100" md-button>
                         View
                     </button>
                 </md-card-actions>

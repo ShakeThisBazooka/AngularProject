@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Job } from '../../../shared/models/job';
+import { JobService } from "../../../shared/services/job.service";
+import { CompanyService } from "../../../shared/services/company.service";
 
 @Component({
   selector: 'app-find-a-job',
@@ -12,109 +14,55 @@ export class FindAJobComponent implements OnInit {
   selectedLocation: string;
   selectedCategory: string;
   selectedEngagement: string;
+  selectedJob: string;
 
   public locations = [
-    {value: 'sofia', viewValue: 'Sofia'},
-    {value: 'plovdiv', viewValue: 'Plovdiv'},
-    {value: 'burgas', viewValue: 'Burgas'},
-    {value: 'pleven', viewValue: 'Pleven'},
+    {value: undefined, viewValue: 'None'},
+    {value: 'Sofia', viewValue: 'Sofia'},
+    {value: 'Plovdiv', viewValue: 'Plovdiv'},
+    {value: 'Burgas', viewValue: 'Burgas'},
+    {value: 'Pleven', viewValue: 'Pleven'},
   ];
   public engagements = [
+    {value: undefined, viewValue: 'None'},
     {value: 'part-time', viewValue: 'Part-time'},
     {value: 'full-time', viewValue: 'Full-time'},
 
   ];
   public categories = [
-    {value: 'it', viewValue: 'IT'},
-    {value: 'art', viewValue: 'Art'},
-    {value: 'health', viewValue: 'Health Care'},
-    {value: 'transportation', viewValue: 'Transportation'},
-    {value: 'banking-finance', viewValue: 'Banking & Finance'},
-    {value: 'customer-service', viewValue: 'Hospitality'},
-    {value: 'hospitality', viewValue: 'Customer Service'},
+    {value: undefined, viewValue: 'None'},
+    {value: 'IT', viewValue: 'IT'},
+    {value: 'Art', viewValue: 'Art'},
+    {value: 'Health Care', viewValue: 'Health Care'},
+    {value: 'Transportation', viewValue: 'Transportation'},
+    {value: 'Banking & Finance', viewValue: 'Banking & Finance'},
+    {value: 'Customer Service', viewValue: 'Customer Service'},
   ];
 
-  public jobs = [
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    }
+  public jobs: Job[];
 
-  ];
-  constructor() { }
+  constructor(private jobService: JobService,
+              private companyService: CompanyService
+  ) { }
 
   ngOnInit() {
   }
 
   public filterJobs(location, engagement, category) {
-
+    let query;
+    if (!location || !engagement || !category) {
+      query = undefined;
+    } else {
+      query = {
+        location: location,
+        engagement: engagement,
+        category: category };
+    }
+      console.log(query);
+    this.jobService.getMany(query)
+      .subscribe((jobs: Job[]) => {
+        console.log(jobs);
+        this.jobs = jobs;
+      });
   }
 }
