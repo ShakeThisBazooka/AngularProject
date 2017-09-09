@@ -1,4 +1,4 @@
-<div *ngIf="dataSource && length > 0">
+<div *ngIf="dataSource && jobsCount > 0">
     <md-toolbar color="primary">
         <span fxFlex="1 1 auto"></span>
         <button md-raised-button color="accent" class="mr-1">
@@ -8,10 +8,10 @@
     </md-toolbar>
     <md-card>
         <md-table #table class="table table-hover table-mc-indigo " [dataSource]="dataSource">
-            <ng-container  cdkColumnDef="Nr.">
+            <!-- <ng-container  cdkColumnDef="Nr.">
                 <md-header-cell  *cdkHeaderCellDef > Nr. </md-header-cell>
                 <md-cell *cdkCellDef="let row" > {{ row.counter }}</md-cell>
-            </ng-container>
+            </ng-container> -->
             <ng-container cdkColumnDef="Title">
                 <md-header-cell *cdkHeaderCellDef > Title </md-header-cell>
                 <md-cell  *cdkCellDef="let row" > {{ row.title }}</md-cell>
@@ -28,7 +28,7 @@
                 <md-header-cell *cdkHeaderCellDef > Engagement </md-header-cell>
                 <md-cell *cdkCellDef="let row" > {{ row.engagement }}</md-cell>
             </ng-container>
-            <ng-container *isPermitted cdkColumnDef="Menu">
+            <ng-container cdkColumnDef="Menu">
                 <md-header-cell *cdkHeaderCellDef > Menu </md-header-cell>
                 <md-cell  fxLayoutAlign="center center" (click)="$event.stopPropagation()" *cdkCellDef="let row" >
                     <button md-icon-button color="primary"
@@ -41,14 +41,10 @@
                         <ng-template [ngIf]="applicantView" [ngIfElse]="companyView">
                             <button md-menu-item (click)="onDeleteJob.emit(row._id)">
                                 <md-icon>delete</md-icon>
-                                <span>Remove from team</span>
+                                <span>Remove application</span>
                             </button>
                         </ng-template>
-                        <ng-template #allPlayers>
-                            <button md-menu-item>
-                                <md-icon>add</md-icon>
-                                <span>Add to team</span>
-                            </button>
+                        <ng-template #companyView>
                             <button md-menu-item (click)="onEditJob.emit(row)">
                                 <md-icon>mode_edit</md-icon>
                                 <span>Edit</span>

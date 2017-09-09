@@ -38,15 +38,11 @@ export class CompanyProfileComponent implements OnInit {
 
   public getJobs(companyId: string) {
     this.companyService.getJobs(companyId)
-      // .map((response: { jobs: Job[] }) => {
-      //   this.jobsCount = response.jobs.length;
-      //   response.jobs.map((job: Job, jobIndex: number) => {
-      //     job.counter = jobIndex + 1;
-      //     return job;
-      //   });
-      //   return response.jobs;
-      // })
+      .map((response: any) => {
+        return response.jobs;
+      })
       .subscribe((jobs) => {
+        this.jobsCount = jobs.length;
         this.jobs = jobs;
       });
   }

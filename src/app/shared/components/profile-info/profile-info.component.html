@@ -1,5 +1,5 @@
-<md-card *ngIf="user">
-        <md-card-content>
+<md-card *ngIf="user" fxFlexFill fxLayout="column">
+        <md-card-content fxFlex="25">
           <div fxLayout="row">
             <div fxFlex="55">
               <h1 *ngIf="isApplicant" class="ma-0">{{user.firstName}} <b>{{user.lastName}}</b></h1>

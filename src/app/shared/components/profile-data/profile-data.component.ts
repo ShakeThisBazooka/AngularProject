@@ -11,7 +11,8 @@ import { TableDataSource } from './table-data-source';
 export class ProfileDataComponent implements OnInit {
 
   public displayedColumns = [
-        'Nr.', 'Title', 'Location', 'Category', 'Engagement', 'Menu'
+        // 'Nr.',
+        'Title', 'Location', 'Category', 'Engagement', 'Menu'
     ];
 
   @Input()
@@ -21,7 +22,6 @@ export class ProfileDataComponent implements OnInit {
   public applicantView: string;
 
   public dataSource: DataSource<any>;
-  public length: number;
   @Input()
   public jobs: Job[];
 
@@ -29,7 +29,6 @@ export class ProfileDataComponent implements OnInit {
   set jobsData(_jobs: Job[]) {
         this.jobs = _jobs;
         if (this.jobs.length) {
-            this.length = this.jobsCount;
             this.dataSource = new TableDataSource(this.jobs);
         }
   }

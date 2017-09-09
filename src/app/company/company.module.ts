@@ -6,10 +6,10 @@ import { CompanyGuard } from './guards/company.guard';
 import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
 import { MdToolbarModule, MdIconModule, MdCardModule, MdInputModule, MdButtonModule, MdButtonToggleModule, MdListModule, MdGridListModule, MdMenuModule, MdSidenavModule, MdProgressBarModule, MdTabsModule, MdDialogModule, MdExpansionModule, MaterialModule, MdTooltipModule, MdTableModule, MdPaginatorModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule } from "@angular/router";
-import { Md2Module } from "md2";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CdkTableModule } from "@angular/cdk";
+import { RouterModule } from '@angular/router';
+import { Md2Module } from 'md2';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CdkTableModule } from '@angular/cdk';
 
 
 @NgModule({
