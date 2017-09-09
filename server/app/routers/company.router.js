@@ -10,7 +10,7 @@ const attachTo = (app, {companyController}) => {
     app.put('/api/company/:id', ensureToken, companyController.updateCompany);
     app.put('/api/company/:cid/jobs/:jid', ensureToken, companyController.updateJob);
     app.delete('/api/company/:id', ensureToken, companyController.deleteCompany);
-    app.delete('/api/company/:cid/jobs/:jid', companyController.deleteJob);
+    app.delete('/api/company/:cid/jobs/:jid', ensureToken, companyController.deleteJob);
   };
 
 function ensureToken(req,res,next) {
