@@ -1,8 +1,13 @@
-<div class="wrapper" fxLayout="row" fxLayoutWrap="wrap">
-  <div fxFlex.gt-sm="25" fxFlex="100">
+<div class="wrapper" fxLayout="row" fxLayoutWrap="wrap" fxFlexFill>
+  <div fxFlex.gt-sm="25" fxFlex="100" fxFlexFill>
       <app-profile-info [user]="applicant"></app-profile-info>
   </div>
   <div fxFlex.gt-sm="75" fxFlex="100">
-    <app-profile-info [user]="applicant"></app-profile-info>
+    <app-profile-data 
+        [jobsData]="jobs"
+        [applicantView]="true"
+        [jobsCount]="jobsCount"
+        (onDeleteJob)="deleteJob($event)"
+    ></app-profile-data>
   </div>
 </div>

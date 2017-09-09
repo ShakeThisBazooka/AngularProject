@@ -28,7 +28,7 @@ export class ProfileDataComponent implements OnInit {
   @Input()
   set jobsData(_jobs: Job[]) {
         this.jobs = _jobs;
-        if (this.jobs.length) {
+        if (this.jobs && this.jobs.length) {
             this.dataSource = new TableDataSource(this.jobs);
         }
   }
