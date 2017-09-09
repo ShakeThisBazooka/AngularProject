@@ -1,0 +1,71 @@
+<div *ngIf="dataSource && jobsCount > 0">
+    <md-toolbar color="primary">
+        <span fxFlex="1 1 auto"></span>
+        <button md-raised-button color="accent" class="mr-1">
+            <md-icon class="md-24">add</md-icon>
+            Add Job
+        </button>
+    </md-toolbar>
+    <md-card>
+        <md-table #table class="table table-hover table-mc-indigo " [dataSource]="dataSource">
+            <!-- <ng-container  cdkColumnDef="Nr.">
+                <md-header-cell  *cdkHeaderCellDef > Nr. </md-header-cell>
+                <md-cell *cdkCellDef="let row" > {{ row.counter }}</md-cell>
+            </ng-container> -->
+            <ng-container cdkColumnDef="Title">
+                <md-header-cell *cdkHeaderCellDef > Title </md-header-cell>
+                <md-cell  *cdkCellDef="let row" > {{ row.title }}</md-cell>
+            </ng-container>
+            <ng-container cdkColumnDef="Location">
+                <md-header-cell *cdkHeaderCellDef > Location </md-header-cell>
+                <md-cell *cdkCellDef="let row" > {{ row.location }}</md-cell>
+            </ng-container>
+            <ng-container cdkColumnDef="Category">
+                <md-header-cell *cdkHeaderCellDef > Category </md-header-cell>
+                <md-cell  *cdkCellDef="let row" > {{ row.category }}</md-cell>
+            </ng-container>
+            <ng-container cdkColumnDef="Engagement">
+                <md-header-cell *cdkHeaderCellDef > Engagement </md-header-cell>
+                <md-cell *cdkCellDef="let row" > {{ row.engagement }}</md-cell>
+            </ng-container>
+            <ng-container cdkColumnDef="Menu">
+                <md-header-cell *cdkHeaderCellDef > Menu </md-header-cell>
+                <md-cell  fxLayoutAlign="center center" (click)="$event.stopPropagation()" *cdkCellDef="let row" >
+                    <button md-icon-button color="primary"
+                            [mdMenuTriggerFor]="menu"
+                            mdTooltip="Menu">
+                        <md-icon>more_vert</md-icon>
+                    </button>
+
+                    <md-menu #menu="mdMenu">
+                        <ng-template [ngIf]="applicantView" [ngIfElse]="companyView">
+                            <button md-menu-item (click)="onDeleteJob.emit(row._id)">
+                                <md-icon>delete</md-icon>
+                                <span>Remove application</span>
+                            </button>
+                        </ng-template>
+                        <ng-template #companyView>
+                            <button md-menu-item (click)="onEditJob.emit(row)">
+                                <md-icon>mode_edit</md-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button md-menu-item (click)="onDeleteJob.emit(row._id)">
+                                <md-icon>delete</md-icon>
+                                <span>Delete</span>
+                            </button>
+                        </ng-template>
+                    </md-menu>
+                </md-cell>
+            </ng-container>
+            <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+            <md-row routerLink="{{navigate + '/' + row._id}}"
+                    *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+        </md-table>
+        <!-- <div fxLayout="row" fxLayoutAlign="end center">
+            <md-paginator #paginator (page)="onPageChange.emit($event)" [length]="length" [pageSize]="pageSize"
+                          [pageSizeOptions]="[5, 10, 25]">
+            </md-paginator>
+        </div> -->
+
+    </md-card>
+</div>
