@@ -16,7 +16,7 @@ const frontRoutes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'jobs', component: FindAJobComponent },
-            { path: 'jobs/job', component: JobDetailComponent }
+            { path: 'jobs/:id', component: JobDetailComponent }
         ]
     }
 ];

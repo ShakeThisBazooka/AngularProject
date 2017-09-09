@@ -9,12 +9,29 @@ import { Job } from '../../../shared/models/job';
 })
 export class FindAJobComponent implements OnInit {
 
-  selectedValue: string;
+  selectedLocation: string;
+  selectedCategory: string;
+  selectedEngagement: string;
 
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+  public locations = [
+    {value: 'sofia', viewValue: 'Sofia'},
+    {value: 'plovdiv', viewValue: 'Plovdiv'},
+    {value: 'burgas', viewValue: 'Burgas'},
+    {value: 'pleven', viewValue: 'Pleven'},
+  ];
+  public engagements = [
+    {value: 'part-time', viewValue: 'Part-time'},
+    {value: 'full-time', viewValue: 'Full-time'},
+
+  ];
+  public categories = [
+    {value: 'it', viewValue: 'IT'},
+    {value: 'art', viewValue: 'Art'},
+    {value: 'health', viewValue: 'Health Care'},
+    {value: 'transportation', viewValue: 'Transportation'},
+    {value: 'banking-finance', viewValue: 'Banking & Finance'},
+    {value: 'customer-service', viewValue: 'Hospitality'},
+    {value: 'hospitality', viewValue: 'Customer Service'},
   ];
 
   public jobs = [
@@ -97,4 +114,7 @@ export class FindAJobComponent implements OnInit {
   ngOnInit() {
   }
 
+  public filterJobs(location, engagement, category) {
+
+  }
 }
