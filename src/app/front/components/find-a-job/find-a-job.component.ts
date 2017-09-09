@@ -47,7 +47,11 @@ export class FindAJobComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+<<<<<<< Updated upstream
     this.filterJobs();
+=======
+    this.filterJobs(undefined, undefined, undefined);
+>>>>>>> Stashed changes
   }
 
   public filterJobs(location?, engagement?, category?) {
@@ -62,7 +66,6 @@ export class FindAJobComponent implements OnInit {
     }
     this.jobService.getMany(query)
       .subscribe((jobs: Job[]) => {
-        console.log(jobs);
         this.jobs = jobs;
       });
   }
