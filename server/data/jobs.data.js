@@ -34,10 +34,6 @@ class JobsData extends BaseData {
         return Promise.reject('Undefined job');
     }
 
-
-    console.log("Az idvam ot jobs data");
-    console.log(job);
-
     return this.collection.findOne({ _id: ObjectId(job._id) })
       .then(() => {
         return this.collection.updateOne({ _id: job._id },
