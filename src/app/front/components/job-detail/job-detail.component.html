@@ -36,8 +36,8 @@
                 </md-card-subtitle>
                 <hr>
                 <md-card-actions fxLayout="row" fxLayoutAlign="start stretch">
-                    <button [routerLink]="['/jobs/job']" color="primary" fxLayoutAlign="center center" fxFlex="100" md-button>
-                        Apply
+                    <button (click)="this.applyJobDetail()" [disabled]="!!this.isCompanyJob" color="primary" fxLayoutAlign="center center" fxFlex="100" md-button>
+                     {{ value }}
                     </button>
                 </md-card-actions>
       <!-- <md-card-content class="text-xs-center">
