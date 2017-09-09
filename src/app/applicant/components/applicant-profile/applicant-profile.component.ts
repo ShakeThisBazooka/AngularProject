@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApplicantService } from '../../../shared/services/applicant.service';
 import { Applicant } from '../../../shared/models/applicant';
 import { UserService } from '../../../shared/services/user.service';
-import { Job } from "../../../shared/models/job";
+import { Job } from '../../../shared/models/job';
 
 @Component({
   selector: 'app-applicant-profile',
@@ -13,7 +13,7 @@ export class ApplicantProfileComponent implements OnInit {
 
   public applicant: Applicant;
   public jobs: Job[];
-  public jobsData: number;
+  public jobsCount: number;
   constructor(
     private applicantService: ApplicantService,
     private userService: UserService
@@ -30,7 +30,7 @@ export class ApplicantProfileComponent implements OnInit {
             this.applicant = applicant;
             this.jobs = applicant.jobs;
             console.log(applicant.jobs);
-            // this.jobsData = this.jobs.length;
+            this.jobsCount = this.jobs.length;
       });
   }
 

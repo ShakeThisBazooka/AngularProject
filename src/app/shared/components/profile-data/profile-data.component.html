@@ -1,5 +1,5 @@
 <div *ngIf="dataSource && jobsCount > 0">
-    <md-toolbar color="primary">
+    <md-toolbar *ngIf="!applicantView" color="primary">
         <span fxFlex="1 1 auto"></span>
         <button md-raised-button color="accent" class="mr-1">
             <md-icon class="md-24">add</md-icon>
