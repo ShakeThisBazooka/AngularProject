@@ -27,27 +27,27 @@ class CompaniesData extends BaseData {
   }
 
   getByUserId(id) {
-    return this.collection.findOne({ userId: id });
+    return this.collection.findOne({userId: id});
   }
 
   updateCurrentCompany(company) {
     if (!this._isModelValid(company)) {
       return Promise.reject('Invalid company');
     }
-    if(company === undefined){
-        return Promise.reject('Undefined company');
+    if (company === undefined) {
+      return Promise.reject('Undefined company');
     }
     return this.collection.findOne({
       userId: company.userId,
     }).then((comp) => {
-        return this.collection.updateOne({ userId: company.userId },
-        { $set:
-          {
+      return this.collection.updateOne({userId: company.userId},
+        {
+          $set: {
             'name': company.name,
             'vat': company.vat,
             'field': company.field
           }
-        }, { upsert: true });
+        }, {upsert: true});
     }).then(() => {
       return this.ModelClass.toViewModel(company)
     });
@@ -57,65 +57,79 @@ class CompaniesData extends BaseData {
     return this.collection.findOne({
       userId: id,
     })
-     .then((company) => {
-       return this.collection.remove(company);
-     });
+      .then((company) => {
+        return this.collection.remove(company);
+      });
   }
 
   getJobsOfCompany(id) {
     return this.collection.findOne({
       userId: id
     })
-     .then((company) => {
-       return company.jobs;
-     });
+      .then((company) => {
+        return company.jobs;
+      });
   }
 
   addJobToCompany(id, job) {
+    job.id = id;
     return this.getByUserId(id)
-    .then((company) => {
-      return this.collection.update({
-        userId: company.userId
-      }, {$addToSet: {jobs: job }})
-    })
-    .then(() => {
-      return this.getByUserId(id)
-        .then((comp) => {
-          return this.ModelClass.toViewModel(comp);
-        });
-    })
+      .then((company) => {
+        return this.collection.update({
+          userId: company.userId
+        }, {$addToSet: {jobs: job}})
+      })
+      .then(() => {
+        return this.getByUserId(id)
+          .then((comp) => {
+            return this.ModelClass.toViewModel(comp);
+          });
+      })
   }
 
   updateJobsOfCompany(userId, jobToUpdate) {
-    console.log('trqbva da updeitna joba');
-    console.log(userId);
-    console.log(jobToUpdate);
-        return this.collection.update(
-          { userId: userId, jobs: { $elemMatch: { companyId: jobToUpdate.companyId } } },
-          { $set: {
-            'jobs.$.title': jobToUpdate.title,
-            'jobs.$.description': jobToUpdate.description,
-            'jobs.$.companyInfo': jobToUpdate.companyInfo,
-            'jobs.$.requirements': jobToUpdate.requirements,
-            'jobs.$.benefits': jobToUpdate.benefits,
-            'jobs.$.location': jobToUpdate.location,
-            'jobs.$.category': jobToUpdate.category,
-            'jobs.$.engagement': jobToUpdate.engagement
-          }}
-        ).then((res) => {
-          return res;
-        });
+    return this.collection.update(
+      {userId: userId, jobs: {$elemMatch: {companyId: jobToUpdate.companyId}}},
+      {
+        $set: {
+          'jobs.$.title': jobToUpdate.title,
+          'jobs.$.description': jobToUpdate.description,
+          'jobs.$.companyInfo': jobToUpdate.companyInfo,
+          'jobs.$.requirements': jobToUpdate.requirements,
+          'jobs.$.benefits': jobToUpdate.benefits,
+          'jobs.$.location': jobToUpdate.location,
+          'jobs.$.category': jobToUpdate.category,
+          'jobs.$.engagement': jobToUpdate.engagement
+        }
+      }
+    ).then((res) => {
+      return res;
+    });
   }
 
-  deleteJobOfCompany(userId, jobId) {
-    return this.collection.update(
-      {userId: userId},
-      {$pull: {'jobs': {'_id': jobId}}}
-    )
-    .then((res) => {
-      return res;
-    })
+  deleteJobOfCompany(companyId, jobId) {
+    console.log("companyID:" + companyId);
+    console.log("jobID:" + jobId);
+
+    return this.getBySpecificId(companyId)
+      .then((company => {
+        const index = company.jobs.findIndex(x => x._id.toString() === jobId.toString());
+
+        if (index < 0) {
+          return Promise.reject('No Such Job');
+        }
+
+        else {
+          company.jobs.splice(index, 1);
+          console.log(company);
+          console.log(companyId);
+          return this.collection.update(
+            {userId: companyId}, company
+          );
+        }
+      }));
   }
+
 }
 
 module.exports = CompaniesData;
