@@ -37,17 +37,18 @@ const companyController = (data) => {
         },
 
         deleteCompany(req, res) {
-            const companyId = req.params.id;
-            const company = data.companies.getById(companyId);
-
-            company.jobs.forEach((job) => {
-                job.applicants.forEach((applicant) => {
-                    data.jobs.deleteApplicant(job, applicant);
+            const userId = req.params.id;
+            data.companies.getByUserId(userId)
+                .then((company) => {
+                    company.jobs.forEach((job) => {
+                        job.applicants.forEach((applicant) => {
+                            data.jobs.deleteApplicant(job, applicant);
+                        });
+                        data.jobs.delete(job);
+                    });
                 });
-                data.jobs.delete(job);
-            });
 
-            return data.companies.deleteCurrentCompany(companyId)
+            return data.companies.deleteCurrentCompany(userId)
              .then(() => {
                  return res.status(200).json({success: true});
              })
@@ -69,29 +70,56 @@ const companyController = (data) => {
         },
 
         addJob(req, res) {
-            const companyId = req.params.id;
+            const userId = req.params.id;
             const job = req.body;
 
-            return data.companies.addJobToCompany(companyId, job)
-             .then((company) => {
-                 return res.status(200).json(company);
-             })
-             .catch((err) => {
-                 return res.status(400).json({errorMsg: err});
-             });
+            return data.jobs.create(job)
+              .then((createdJob) => {
+                console.log(createdJob);
+                return data.companies.addJobToCompany(userId, createdJob)
+                .then((company) => {
+                    return res.status(200).json(company);
+                })
+                .catch((err) => {
+                    return res.status(400).json({errorMsg: err});
+                });
+              });
         },
 
         updateJob(req, res) {
-            const companyId = req.params.cid;
+            const userId = req.params.cid;
             const jobId = req.params.jid;
             const jobToUpdate = req.body;
 
-            return data.companies.updateJobsOfCompany(companyId, jobId, jobToUpdate, data.jobs)
-              .then((jobs) => {
-                  return res.status(200).json({success: true, jobs});
-              })
-              .catch((err) => {
-                  return res.status(400).json({errorMsg: err});
+            return data.jobs.getById(jobId)
+              .then((job) => {
+                jobToUpdate._id = job._id;
+                return data.jobs.updateJob(jobToUpdate)
+                  .then(() => {
+                    return data.companies.updateJobsOfCompany(userId, jobToUpdate)
+                    .then((jobs) => {
+                        return res.status(200).json({success: true, jobs});
+                    })
+                    .catch((err) => {
+                        return res.status(400).json({errorMsg: err});
+                    });
+                  });
+              });
+        },
+
+        deleteJob(req, res) {
+            const userId = req.params.cid;
+            const jobId = req.params.jid;
+
+            return data.jobs.delete(jobId)
+              .then(() => {
+                return data.companies.deleteJobOfCompany(userId, jobId)
+                .then(() => {
+                    return res.status(200).json({success: true});
+                })
+                .catch((err) => {
+                    return res.status(400).json({errorMsg: err});
+                })
               });
         }
     };

@@ -2,12 +2,8 @@ const applicantController = (data) => {
     return {
         getById(req, res) {
             const userId = req.params.id;
-            console.log("V applicants");
-
-            console.log(data.applicants);
 
             return data.applicants.getByUserId(userId).then((applicant) => {
-                console.log(applicant);
                 return res.send(applicant);
             });
         },
@@ -15,17 +11,24 @@ const applicantController = (data) => {
         updateApplicant(req, res) {
             const userId = req.params.id;
             const applicantToUpdate = req.body;
+            applicantToUpdate.userId = userId;
 
-            const foundApplicant = data.applicants.getByUserId(userId).then((appl) => {
+            applicantToUpdate.jobs.forEach((job) => {
+                data.jobs.updateJob(job);
+            });
+
+            return data.applicants.getByUserId(userId).then((appl) => {
                 if(appl === undefined){
                     return Promise.reject('no applicant');
                 }
 
-                console.log(applicantToUpdate);
-
-                return data.applicants.updateCurrentApplicant(applicantToUpdate).then((applicant) => {
+                return data.applicants.updateCurrentApplicant(applicantToUpdate)
+                 .then((applicant) => {
                     return res.send(applicant);
-                });
+                 })
+                 .catch((err) => {
+                     return res.status(400).json({errorMsg: err});
+                 })
             });
         },
 
@@ -42,15 +45,16 @@ const applicantController = (data) => {
         },
 
         deleteApplicant(req, res) {
-            const applicantId = req.params.id;
+            const userId = req.params.id;
 
-            const applicant = data.applicants.getById(applicantId);
+            data.applicants.getByUserId(userId)
+              .then((appl) => {
+                appl.jobs.forEach((job) => {
+                    data.jobs.deleteApplicant(job, applicant);
+                });
+              });
 
-            applicant.jobs.forEach((job) => {
-                data.jobs.deleteApplicant(job, applicant);
-            });
-
-            return data.applicants.deleteCurrentApplicant(applicantId)
+            return data.applicants.deleteCurrentApplicant(userId)
              .then(() => {
                  return res.status(200).json({success: true});
              })
@@ -60,9 +64,9 @@ const applicantController = (data) => {
         },
 
         getJobs(req, res) {
-            const applicantId = req.params.id;
+            const userId = req.params.id;
 
-            return data.applicants.getJobsOfApplicant(applicantId)
+            return data.applicants.getJobsOfApplicant(userId)
              .then((jobs) => {
                  return res.status(200).json({success: true, jobs});
              })
@@ -72,22 +76,25 @@ const applicantController = (data) => {
         },
 
         addJobToApplicant(req, res) {
-            const applicantId = req.params.aid;
+            const userId = req.params.aid;
             const jobId = req.params.jid;
 
-            const applicant = data.applicants.getById(applicantId);
-            const job = data.jobs.getById(jobId);
-
-            return data.jobs.addPassedApplicantToJob(jobId, applicant)
-              .then(() => {
-                  return data.applicants.addPassedJobToApplicant(applicantId, job)
-                    .then(() => {
-                        return res.status(200).json({success: true, message: 'job added'});
-                    })
-                    .catch((err) => {
-                        return res.status(400).json({errorMsg: err});
-                    });
-              });
+            return data.applicants.getByUserId(userId)
+             .then((appl) => {
+                return data.jobs.addPassedApplicantToJob(jobId, appl)
+                .then(() => {
+                    return data.jobs.getById(jobId)
+                     .then((job) => {
+                        return data.applicants.addPassedJobToApplicant(userId, job)
+                        .then(() => {
+                            return res.status(200).json({success: true, message: 'job added'});
+                        })
+                        .catch((err) => {
+                            return res.status(400).json({errorMsg: err});
+                        });
+                     });
+                });
+             })
         }
     };
   };

@@ -64,7 +64,7 @@ class CompaniesData extends BaseData {
 
   getJobsOfCompany(id) {
     return this.collection.findOne({
-      userId: id,
+      userId: id
     })
      .then((company) => {
        return company.jobs;
@@ -72,25 +72,46 @@ class CompaniesData extends BaseData {
   }
 
   addJobToCompany(id, job) {
-      return this.collection.findOne({
-      userId: id,
-    }).then((company) => {
-           company.jobs.push(job);
-           return company;
-       });
+    return this.getByUserId(id)
+    .then((company) => {
+      return this.collection.update({
+        userId: company.userId
+      }, {$addToSet: {jobs: job }})
+    })
+    .then(() => {
+      return this.getByUserId(id)
+        .then((comp) => {
+          return this.ModelClass.toViewModel(comp);
+        });
+    })
   }
 
-  updateJobsOfCompany(companyId, jobId, jobToUpdate, jobs) {
-      return this.collection.getById(id)
-        .then((comp) => {
-            comp.jobs.forEach((job) => {
-                if(job.id === jobId) {
-                    jobs.updateJob(job);
-                }
-            });
-
-            return comp.jobs;
+  updateJobsOfCompany(userId, jobToUpdate) {
+        return this.collection.update(
+          { userId: userId, jobs: { $elemMatch: { companyId: jobToUpdate.companyId } } },
+          { $set: {
+            'jobs.$.title': jobToUpdate.title, 
+            'jobs.$.description': jobToUpdate.description, 
+            'jobs.$.companyInfo': jobToUpdate.companyInfo,
+            'jobs.$.requirements': jobToUpdate.requirements,
+            'jobs.$.benefits': jobToUpdate.benefits,
+            'jobs.$.location': jobToUpdate.location,
+            'jobs.$.category': jobToUpdate.category,
+            'jobs.$.engagement': jobToUpdate.engagement
+          }}
+        ).then((res) => {
+          return res;
         });
+  }
+
+  deleteJobOfCompany(userId, jobId) {
+    return this.collection.update(
+      {userId: userId},
+      {$pull: {'jobs': {'_id': jobId}}}
+    )
+    .then((res) => {
+      return res;
+    })
   }
 }
 
