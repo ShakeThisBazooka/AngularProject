@@ -47,11 +47,7 @@ export class FindAJobComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-<<<<<<< Updated upstream
     this.filterJobs();
-=======
-    this.filterJobs(undefined, undefined, undefined);
->>>>>>> Stashed changes
   }
 
   public filterJobs(location?, engagement?, category?) {
