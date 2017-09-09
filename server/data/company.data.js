@@ -40,11 +40,11 @@ class CompaniesData extends BaseData {
     return this.collection.findOne({
       userId: company.userId,
     }).then((comp) => {
-        return this.collection.updateOne({ userId: company.userId }, 
-        { $set: 
-          { 
-            'name': company.name, 
-            'vat': company.vat, 
+        return this.collection.updateOne({ userId: company.userId },
+        { $set:
+          {
+            'name': company.name,
+            'vat': company.vat,
             'field': company.field
           }
         }, { upsert: true });
@@ -68,7 +68,7 @@ class CompaniesData extends BaseData {
     })
      .then((company) => {
        return company.jobs;
-     }); 
+     });
   }
 
   addJobToCompany(id, job) {
@@ -87,11 +87,14 @@ class CompaniesData extends BaseData {
   }
 
   updateJobsOfCompany(userId, jobToUpdate) {
+    console.log('trqbva da updeitna joba');
+    console.log(userId);
+    console.log(jobToUpdate);
         return this.collection.update(
           { userId: userId, jobs: { $elemMatch: { companyId: jobToUpdate.companyId } } },
           { $set: {
-            'jobs.$.title': jobToUpdate.title, 
-            'jobs.$.description': jobToUpdate.description, 
+            'jobs.$.title': jobToUpdate.title,
+            'jobs.$.description': jobToUpdate.description,
             'jobs.$.companyInfo': jobToUpdate.companyInfo,
             'jobs.$.requirements': jobToUpdate.requirements,
             'jobs.$.benefits': jobToUpdate.benefits,
