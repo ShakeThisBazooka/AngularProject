@@ -13,13 +13,11 @@ class JobsData extends BaseData {
       return Promise.reject('Invalid job');
     }
     return this.collection.findOne({
-      title: job.title,
+      name: job.name,
     }).then((jobExist) => {
       if (jobExist) {
         return Promise.reject('Jobs already taken!');
       }
-
-      job.applicants = [];
       return this.collection.insert(job);
     }).then(() => {
       return this.ModelClass.toViewModel(job);
@@ -33,11 +31,9 @@ class JobsData extends BaseData {
     if(job === undefined){
         return Promise.reject('Undefined job');
     }
-
-
     console.log("Az idvam ot jobs data");
     console.log(job);
-
+    
     return this.collection.findOne({ _id: ObjectId(job._id) })
       .then(() => {
         return this.collection.updateOne({ _id: job._id },
@@ -76,24 +72,18 @@ class JobsData extends BaseData {
      });
   }
 
-  deleteApplicant(job, applicant) {
-     return this.collection.update(
-      { _id: job._id },
-      { $pull: { 'jobs.applicants': { userId: applicant.userId } } }
-     )
-     .then((res) => {
-       return res;
-     })
-  }
+  addPassedApplicantToJob(jobId, applicant) {
+    return this.collection.getById(jobId)
+    .then((job) => {
+      if(job.applicants === undefined) {
+        job.applicants = [];
+      }
 
-  addPassedApplicantToJob(id, applicant) {
-    return this.collection.update(
-      { _id: id},
-      { $addToSet: { applicants: applicant } }
-    ).then((res) => {
-      return res;
+      job.applicants.push(applicant);
+      return job.applicants;
     });
   }
+
 }
 
 module.exports = JobsData;

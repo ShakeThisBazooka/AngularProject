@@ -6,9 +6,9 @@ const attachTo = (app, {companyController}) => {
     app.get('/api/company/:id', ensureToken, companyController.getById);
     app.get('/api/company/:id/jobs', ensureToken, companyController.getJobs);
     app.post('/api/company', ensureToken, companyController.createCompany);
-    app.post('/api/company/:id/jobs', companyController.addJob);
-    app.put('/api/company/:cid/jobs/:jid', companyController.updateJob);
+    app.post('/api/company/:id/jobs', ensureToken, companyController.addJob);
     app.put('/api/company/:id', ensureToken, companyController.updateCompany);
+    app.put('/api/company/:cid/jobs/:jid', ensureToken, companyController.updateJob);
     app.delete('/api/company/:id', ensureToken, companyController.deleteCompany);
     app.delete('/api/company/:cid/jobs/:jid', companyController.deleteJob);
   };

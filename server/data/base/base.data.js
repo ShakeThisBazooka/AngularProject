@@ -37,6 +37,10 @@ class BaseData {
     return this.collection.findOne({ _id: ObjectId(id) });
   }
 
+  getBySpecificId(id){
+    return this.collection.findOne({userId:id})
+  }
+
   getByObjectName(objectName) {
     return this.collection.findOne({
       name: objectName.toString(),

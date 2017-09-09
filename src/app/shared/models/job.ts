@@ -5,7 +5,6 @@ export class Job {
     _id: string;
     title: string;
     companyId: string;
-    company: Company;
     applicants: Applicant[];
     description: string;
     companyInfo: string;
