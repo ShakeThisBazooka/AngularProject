@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Job } from '../../../shared/models/job';
-import { JobService } from "../../../shared/services/job.service";
-import { CompanyService } from "../../../shared/services/company.service";
+import { JobService } from '../../../shared/services/job.service';
+import { CompanyService } from '../../../shared/services/company.service';
 
 @Component({
   selector: 'app-find-a-job',
@@ -14,7 +14,7 @@ export class FindAJobComponent implements OnInit {
   selectedLocation: string;
   selectedCategory: string;
   selectedEngagement: string;
-  selectedJob: string;
+
 
   public locations = [
     {value: undefined, viewValue: 'None'},
@@ -23,6 +23,7 @@ export class FindAJobComponent implements OnInit {
     {value: 'Burgas', viewValue: 'Burgas'},
     {value: 'Pleven', viewValue: 'Pleven'},
   ];
+
   public engagements = [
     {value: undefined, viewValue: 'None'},
     {value: 'part-time', viewValue: 'Part-time'},
@@ -58,7 +59,6 @@ export class FindAJobComponent implements OnInit {
         engagement: engagement,
         category: category };
     }
-      console.log(query);
     this.jobService.getMany(query)
       .subscribe((jobs: Job[]) => {
         console.log(jobs);
