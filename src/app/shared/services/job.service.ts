@@ -14,7 +14,7 @@ export class JobService {
   constructor(private http: Http) { }
 
   public getMany(query?: any): Observable<Job[]> {
-    const queryParams = query ? `?location=${query.location}&category=${query.category}&type=${query.type}` : ``;
+    const queryParams = query !== undefined ? `?location=${query.location}&category=${query.category}&engagement=${query.engagement}` : ``;
     return this.http.get(`${environment.apiEndpoint}/jobs${queryParams}`, getHeaders())
       .map((res) => res.json())
       .catch((err: Response) => handleError(err));

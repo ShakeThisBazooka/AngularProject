@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Job } from '../../../shared/models/job';
+import { JobService } from '../../../shared/services/job.service';
+import { CompanyService } from '../../../shared/services/company.service';
 
 @Component({
   selector: 'app-find-a-job',
@@ -9,92 +11,58 @@ import { Job } from '../../../shared/models/job';
 })
 export class FindAJobComponent implements OnInit {
 
-  selectedValue: string;
+  selectedLocation: string;
+  selectedCategory: string;
+  selectedEngagement: string;
 
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
+
+  public locations = [
+    {value: undefined, viewValue: 'None'},
+    {value: 'Sofia', viewValue: 'Sofia'},
+    {value: 'Plovdiv', viewValue: 'Plovdiv'},
+    {value: 'Burgas', viewValue: 'Burgas'},
+    {value: 'Pleven', viewValue: 'Pleven'},
   ];
 
-  public jobs = [
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    },
-    {
-      title: 'Javascript Engineer',
-      description: `A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application. `,
-      company: {
-        name: 'Centroida'
-      }
-    }
+  public engagements = [
+    {value: undefined, viewValue: 'None'},
+    {value: 'part-time', viewValue: 'Part-time'},
+    {value: 'full-time', viewValue: 'Full-time'},
 
   ];
-  constructor() { }
+  public categories = [
+    {value: undefined, viewValue: 'None'},
+    {value: 'IT', viewValue: 'IT'},
+    {value: 'Art', viewValue: 'Art'},
+    {value: 'Health Care', viewValue: 'Health Care'},
+    {value: 'Transportation', viewValue: 'Transportation'},
+    {value: 'Banking & Finance', viewValue: 'Banking & Finance'},
+    {value: 'Customer Service', viewValue: 'Customer Service'},
+  ];
+
+  public jobs: Job[];
+
+  constructor(private jobService: JobService,
+              private companyService: CompanyService
+  ) { }
 
   ngOnInit() {
   }
 
+  public filterJobs(location, engagement, category) {
+    let query;
+    if (!location || !engagement || !category) {
+      query = undefined;
+    } else {
+      query = {
+        location: location,
+        engagement: engagement,
+        category: category };
+    }
+    this.jobService.getMany(query)
+      .subscribe((jobs: Job[]) => {
+        console.log(jobs);
+        this.jobs = jobs;
+      });
+  }
 }
