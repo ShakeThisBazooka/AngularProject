@@ -6,13 +6,7 @@ const attachTo = (app, {companyController}) => {
     app.get('/api/company/:id', ensureToken, companyController.getById);
     app.get('/api/company/:id/jobs', ensureToken, companyController.getJobs);
     app.post('/api/company', ensureToken, companyController.createCompany);
-<<<<<<< 54e993cf75a4ccd331ff772fcfd085ded68dc6a2
     app.post('/api/company/:id/jobs', ensureToken, companyController.addJob);
-    app.put('/api/company/:cid/jobs/:jid', ensureToken, companyController.updateJob,);
-=======
-    app.post('/api/company/:id/jobs', companyController.addJob);
-    app.put('/api/company/:cid/jobs/:jid', companyController.updateJob,);
->>>>>>> fixed update of jobs
     app.put('/api/company/:id', ensureToken, companyController.updateCompany);
     app.put('/api/company/:cid/jobs/:jid', ensureToken, companyController.updateJob);
     app.delete('/api/company/:id', ensureToken, companyController.deleteCompany);
