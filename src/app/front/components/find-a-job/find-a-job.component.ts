@@ -47,9 +47,10 @@ export class FindAJobComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.filterJobs();
   }
 
-  public filterJobs(location, engagement, category) {
+  public filterJobs(location?, engagement?, category?) {
     let query;
     if (!location || !engagement || !category) {
       query = undefined;

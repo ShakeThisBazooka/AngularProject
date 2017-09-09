@@ -1,0 +1,90 @@
+<div class="add-job-component" fxLayout="column" fxLayoutAlign="start center" >
+    <h1 md-dialog-title>
+        <div>{{ onEdit ? 'Edit' : 'Create' }} job</div>
+        <span fxFlex=""></span>
+    </h1>
+        <form [formGroup]="form" fxFlexFill fxLayout="column" fxLayoutGap="10px">
+                <md-input-container fxFlex="nogrow">
+                    <input mdInput id="dialogTitle" placeholder="Title" formControlName="title" maxlength="250"
+                        [(ngModel)]="job.title">
+                    <md-error
+                         *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched"
+                        >
+                        Please specify job title.
+                    </md-error>
+                </md-input-container>
+                <md-input-container fxFlex="nogrow">
+                    <input mdInput placeholder="Description" formControlName="description"  [(ngModel)]="job.description">
+                    <md-error
+                         *ngIf="form.controls['description'].hasError('required') && form.controls['description'].touched"
+                        >
+                        Please specify job description.
+                    </md-error>
+                </md-input-container>
+                  <md-input-container fxFlex="nogrow">
+                    <input mdInput placeholder="Company info" formControlName="companyInfo"  [(ngModel)]="job.companyInfo">
+                    <md-error
+                         *ngIf="form.controls['companyInfo'].hasError('required') && form.controls['companyInfo'].touched"
+                        >
+                        Please specify company info.
+                    </md-error>
+                </md-input-container>
+                  <md-input-container fxFlex="nogrow">
+                    <input mdInput placeholder="Requirements" formControlName="requirements"  [(ngModel)]="job.requirements">
+                    <md-error
+                         *ngIf="form.controls['requirements'].hasError('required') && form.controls['requirements'].touched"
+                        >
+                        Please specify job requirements.
+                    </md-error>
+                </md-input-container>
+                  <md-input-container fxFlex="nogrow">
+                    <input mdInput placeholder="Benefits" formControlName="benefits"  [(ngModel)]="job.benefits">
+                    <md-error
+                         *ngIf="form.controls['benefits'].hasError('required') && form.controls['benefits'].touched"
+                        >
+                        Please specify job benefits.
+                    </md-error>
+                </md-input-container>
+                  <md-input-container fxFlex="nogrow">
+                    <input mdInput placeholder="Location" formControlName="location"  [(ngModel)]="job.location">
+                    <md-error
+                         *ngIf="form.controls['location'].hasError('required') && form.controls['location'].touched"
+                        >
+                        Please specify company location.
+                    </md-error>
+                </md-input-container>
+                  <md-input-container fxFlex="nogrow">
+                    <input mdInput placeholder="Category" formControlName="category"  [(ngModel)]="job.category">
+                    <md-error
+                         *ngIf="form.controls['category'].hasError('required') && form.controls['category'].touched"
+                        >
+                        Please specify job category.
+                    </md-error>
+                </md-input-container>
+ 
+                 <md-button-toggle-group formControlName="engagement" [(ngModel)]="job.engagement" #group="mdButtonToggleGroup">
+                    <md-button-toggle fxLayoutAlign="center center" fxFlex="50" value="part-time">
+                        <div class="toggle-button-span-wrapper">
+                            <span class="toggle-button-span-content"> Part time </span>
+                        </div>
+                    </md-button-toggle>
+                    <md-button-toggle fxLayoutAlign="center center" fxFlex="50" value="full-time">
+                        <div class="toggle-button-span-wrapper">
+                            <span class="toggle-button-span-content"> Full-time </span>
+                        </div>
+                    </md-button-toggle>  
+                </md-button-toggle-group>
+
+
+            <div  fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <button md-raised-button color="primary" (click)="onSubmit(job)" [disabled]="!form.valid" fxFlex>
+                {{ onEdit ? 'Update' : 'Create' }}
+            </button>
+                <button md-raised-button color="warn" (click)="dialogRef.close()" fxFlex>
+                Cancel
+            </button>
+            </div>
+        </form>
+
+
+</div>

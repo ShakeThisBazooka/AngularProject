@@ -1,7 +1,7 @@
 <div *ngIf="dataSource && jobsCount > 0">
-    <md-toolbar color="primary">
+    <md-toolbar *ngIf="!applicantView" color="primary">
         <span fxFlex="1 1 auto"></span>
-        <button md-raised-button color="accent" class="mr-1">
+        <button md-raised-button (click)="onAddJob.emit(row)" color="accent" class="mr-1">
             <md-icon class="md-24">add</md-icon>
             Add Job
         </button>
@@ -30,7 +30,7 @@
             </ng-container>
             <ng-container cdkColumnDef="Menu">
                 <md-header-cell *cdkHeaderCellDef > Menu </md-header-cell>
-                <md-cell  fxLayoutAlign="center center" (click)="$event.stopPropagation()" *cdkCellDef="let row" >
+                <md-cell  (click)="$event.stopPropagation()" *cdkCellDef="let row" >
                     <button md-icon-button color="primary"
                             [mdMenuTriggerFor]="menu"
                             mdTooltip="Menu">
@@ -58,7 +58,7 @@
                 </md-cell>
             </ng-container>
             <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-            <md-row routerLink="{{navigate + '/' + row._id}}"
+            <md-row routerLink="{{navigate + row._id}}"
                     *cdkRowDef="let row; columns: displayedColumns;"></md-row>
         </md-table>
         <!-- <div fxLayout="row" fxLayoutAlign="end center">

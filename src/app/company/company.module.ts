@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { Md2Module } from 'md2';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CdkTableModule } from '@angular/cdk';
+import { JobApplicantsComponent } from './components/job-applicants/job-applicants.component';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { CdkTableModule } from '@angular/cdk';
     MdPaginatorModule,
     MaterialModule
   ],
-  declarations: [CompanyProfileComponent],
+  declarations: [CompanyProfileComponent, JobApplicantsComponent],
   providers: [CompanyGuard]
 })
 export class CompanyModule { }

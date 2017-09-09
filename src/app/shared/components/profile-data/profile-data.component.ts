@@ -21,6 +21,9 @@ export class ProfileDataComponent implements OnInit {
   @Input()
   public applicantView: string;
 
+  @Input()
+  public navigate: string;
+
   public dataSource: DataSource<any>;
   @Input()
   public jobs: Job[];
