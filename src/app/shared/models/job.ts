@@ -14,4 +14,5 @@ export class Job {
     location: string;
     category: string;
     engagement: string;
+    counter: number;
 }

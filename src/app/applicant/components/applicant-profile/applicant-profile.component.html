@@ -1,3 +1,8 @@
-<p>
-  applicant-profile works!
-</p>
+<div class="wrapper" fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex.gt-sm="25" fxFlex="100">
+      <app-profile-info [user]="applicant"></app-profile-info>
+  </div>
+  <div fxFlex.gt-sm="75" fxFlex="100">
+    <app-profile-info [user]="applicant"></app-profile-info>
+  </div>
+</div>

@@ -1,3 +1,15 @@
-<p>
-  company-profile works!
-</p>
+<div class="wrapper" fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex.gt-sm="25" fxFlex="100">
+      <app-profile-info [user]="company"></app-profile-info>
+  </div>
+  <div fxFlex.gt-sm="75" fxFlex="100">
+    <app-profile-data 
+        [jobsData]="jobs"
+        [applicantView]="false"
+        [jobsCount]="jobsCount"
+        (onAddJob)="addJob($event)"
+        (onDeleteJob)="deleteJob($event)"
+        (onEditJob)="editJob($event)"
+    ></app-profile-data>
+  </div>
+</div>
