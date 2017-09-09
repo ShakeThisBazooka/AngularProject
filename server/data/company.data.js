@@ -108,8 +108,6 @@ class CompaniesData extends BaseData {
   }
 
   deleteJobOfCompany(companyId, jobId) {
-    console.log("companyID:" + companyId);
-    console.log("jobID:" + jobId);
 
     return this.getBySpecificId(companyId)
       .then((company => {
