@@ -20,42 +20,43 @@ export class JobDetailComponent implements OnInit {
   public isCompanyJob: boolean;
 
   constructor(private location: Location, private applicantService: ApplicantService,
-  private userService: UserService, private route: ActivatedRoute,
-  private jobService: JobService) { }
-
-  getJob(id: string) {
-    this.jobService.getOne(id)
-          .subscribe((job: Job) => {
-              this.job = job;
-        });
-  }
+    private userService: UserService, private route: ActivatedRoute,
+    private jobService: JobService) { }
 
   ngOnInit() {
-    const userInfo = this.userService.getUserInfo();
-    const userRole = userInfo.role;
 
-    if (userRole === 'applicant') {
+    if (this.userService.getUserInfo().role === 'applicant') {
       this.value = 'Apply';
     } else {
       const jobId = this.route.params['_value'].id;
       this.getJob(jobId);
 
-      if (this.job.companyId === userInfo.userId) {
-        this.isCompanyJob = true;
-      } else {
-        this.isCompanyJob = false;
-      }
-      this.value = 'Edit';
     }
   }
-  applyJobDetail() {
-    const userInfo = this.userService.getUserInfo();
-    const userId = userInfo.userId;
-    const jobId = this.route.params['_value'].id;
 
-    if (userId !== undefined) {
-      return this.applicantService.apply(userId, jobId);
+    public applyJobDetail() {
+      const jobId = this.route.params['_value'].id;
+      const userId = this.userService.getUserInfo().userId;
+
+      if (userId !== undefined) {
+        this.applicantService.apply(userId, jobId)
+          .subscribe((res) => {
+            console.log("apply res", res);
+          });
+      }
     }
+
+    public getJob(id: string) {
+    this.jobService.getOne(id)
+      .subscribe((job: Job) => {
+        this.job = job;
+        if (this.job.companyId === this.userService.getUserInfo().userId) {
+          this.isCompanyJob = true;
+        } else {
+          this.isCompanyJob = false;
+        }
+        this.value = 'Edit';
+      });
   }
 
 }
