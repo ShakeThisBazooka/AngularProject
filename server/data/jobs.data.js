@@ -31,11 +31,9 @@ class JobsData extends BaseData {
     if(job === undefined){
         return Promise.reject('Undefined job');
     }
-<<<<<<< b2493e39920ae7d919424a5cc07c8f6502ffdcb7
-
-=======
+    console.log("Az idvam ot jobs data");
+    console.log(job);
     
->>>>>>> Added delete job from company functionality.
     return this.collection.findOne({ _id: ObjectId(job._id) })
       .then(() => {
         return this.collection.updateOne({ _id: job._id },
