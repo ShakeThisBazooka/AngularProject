@@ -56,6 +56,15 @@ class UsersData extends BaseData {
     }
     return Promise.resolve(user);
   }
+
+  deleteCurrentUser(id) {
+    return this.collection.findOne({
+      userId: id,
+    })
+      .then((user) => {
+        return this.collection.remove(user);
+      });
+  }
 }
 
 module.exports = UsersData;

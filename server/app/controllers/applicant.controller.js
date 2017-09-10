@@ -46,7 +46,6 @@ const applicantController = (data) => {
 
     deleteApplicant(req, res) {
       const userId = req.params.id;
-
       data.applicants.getByUserId(userId)
         .then((appl) => {
           appl.jobs.forEach((job) => {
@@ -55,6 +54,9 @@ const applicantController = (data) => {
         });
 
       return data.applicants.deleteCurrentApplicant(userId)
+        .then(() => {
+          return data.users.deleteCurrentUser(userId)
+        })
         .then(() => {
           return res.status(200).json({success: true});
         })
@@ -96,6 +98,7 @@ const applicantController = (data) => {
             });
         })
     }
+
   };
 };
 

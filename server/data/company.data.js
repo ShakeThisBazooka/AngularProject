@@ -127,7 +127,6 @@ class CompaniesData extends BaseData {
         }
       }));
   }
-
 }
 
 module.exports = CompaniesData;
