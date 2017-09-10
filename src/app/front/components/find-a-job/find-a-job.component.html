@@ -31,11 +31,11 @@
         <div fxFlex.gt-xs="33" fxFlex.gt-sm="25" fxFlex.gt-md="25" fxFlex="100" *ngFor="let job of jobs">
             <md-card>
                 <md-card-header>
-                    <md-card-title> {{ job.title }}</md-card-title>
+                    <md-card-title appTitleUnderline> {{ job.title }}</md-card-title>
                 </md-card-header>
                 <hr>
                 <md-card-content>
-                  {{ job.description }}
+                  {{ job.description | shorten }}
                 </md-card-content>
                 <md-card-subtitle>
                   Engagement: {{ job.engagement }}

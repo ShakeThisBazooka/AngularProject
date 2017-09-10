@@ -4,6 +4,10 @@ import { UserInfo } from '../../models/user-info';
 import { UserService } from '../../services/user.service';
 import { Applicant } from '../../models/applicant';
 import { Company } from '../../models/company';
+import { MdDialog } from '@angular/material';
+import { CompanyService } from '../../services/company.service';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { ApplicantService } from '../../services/applicant.service';
 
 @Component({
   selector: 'app-profile-info',
@@ -12,14 +16,22 @@ import { Company } from '../../models/company';
 })
 export class ProfileInfoComponent implements OnInit {
 
-  @Input() public user: Applicant | Company;
+  @Input() public user: Company;
   public isApplicant = false;
   public userInfo: UserInfo;
-  constructor(private userService: UserService) {
+
+  @Output()
+  public onEditProfile: EventEmitter<any> = new EventEmitter();
+  constructor(
+    private userService: UserService,
+    private dialog: MdDialog,
+    private companyService: CompanyService,
+    private applicantService: ApplicantService
+  ) {
     this.userInfo = this.userService.getUserInfo();
     this.isApplicant = this.userInfo.role === 'applicant' ? true : false;
     console.log(this.userInfo);
-   }
+  }
 
   ngOnInit() {
 

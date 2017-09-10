@@ -5,14 +5,16 @@ import { HeaderComponent } from './components/partial/header/header.component';
 import { MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule, MdIconModule, MdSelectModule, MdCardModule, MdTooltipModule, MaterialModule, MdPaginator, MdTableModule, MdDialogModule, MdListModule, MdButtonToggleModule, MdTabsModule, MdPaginatorModule } from '@angular/material';
 import { Md2Module } from 'md2';
 import { DashboardComponent } from '../shared/dashboard.component';
-import { SideNavComponent } from '../shared/components/partial/side-nav/side-nav.component';
-import { ProfileComponent } from './components/profile/profile.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileDataComponent } from './components/profile-data/profile-data.component';
 import { CdkTableModule } from '@angular/cdk';
 import { JobManipulationComponent } from './components/job-manipulation/job-manipulation.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { FullNamePipe } from './pipes/fullname.pipe';
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { TitleUnderlineDirective } from './directives/title-underline.directive';
 
 
 
@@ -43,25 +45,30 @@ import { JobManipulationComponent } from './components/job-manipulation/job-mani
     MdPaginatorModule
   ],
   entryComponents: [
-    JobManipulationComponent
+    JobManipulationComponent,
+    EditProfileComponent
   ],
   exports: [
     HeaderComponent,
-    SideNavComponent,
     DashboardComponent,
-    ProfileComponent,
     ProfileInfoComponent,
     ProfileDataComponent,
-    JobManipulationComponent
+    JobManipulationComponent,
+    EditProfileComponent,
+    FullNamePipe,
+    ShortenPipe,
+    TitleUnderlineDirective
   ],
   declarations: [
     DashboardComponent,
     HeaderComponent,
-    SideNavComponent,
-    ProfileComponent,
     ProfileInfoComponent,
     ProfileDataComponent,
-    JobManipulationComponent
+    JobManipulationComponent,
+    EditProfileComponent,
+    FullNamePipe,
+    ShortenPipe,
+    TitleUnderlineDirective
   ]
 })
 export class SharedModule {
