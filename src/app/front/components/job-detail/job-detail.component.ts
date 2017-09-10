@@ -18,6 +18,7 @@ export class JobDetailComponent implements OnInit {
   public job: Job;
   public value: string;
   public isCompanyJob: boolean;
+  public jobId: string;
 
   constructor(private location: Location, private applicantService: ApplicantService,
     private userService: UserService, private route: ActivatedRoute,
@@ -27,18 +28,18 @@ export class JobDetailComponent implements OnInit {
 
     if (this.userService.getUserInfo().role === 'applicant') {
       this.value = 'Apply';
-    } else {
-      const jobId = this.route.params['_value'].id;
-      this.getJob(jobId);
     }
+      this.route.params.subscribe((params) => {
+        console.log(params.id);
+            this.jobId = params['id'];
+            this.getJob(params['id']);
+        });
+
   }
 
     public applyJobDetail() {
-      const jobId = this.route.params['_value'].id;
-      const userId = this.userService.getUserInfo().userId;
-
-      if (userId !== undefined) {
-        this.applicantService.apply(userId, jobId)
+      if (this.userService.getUserInfo().userId !== undefined) {
+        this.applicantService.apply(this.userService.getUserInfo().userId, this.jobId)
           .subscribe((res) => {
           });
       }
