@@ -8,7 +8,7 @@ describe('FindAJobComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FindAJobComponent ]
+      declarations: [FindAJobComponent],
     })
     .compileComponents();
   }));
