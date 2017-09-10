@@ -1,7 +1,7 @@
 <md-toolbar class="find-a-job-content" color="primary" fxLayout="row" fxLayoutAlign="center center">
   <span fxFlex="1 1 auto" fxLayoutAlign="center center">Search for a job</span>
   <md-toolbar-row>
-        <form fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <form fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" fxLayoutWrap="wrap">
           <md-select placeholder="Location" [(ngModel)]="selectedLocation" name="location">
             <md-option *ngFor="let location of locations" [value]="location.value">
               <span>{{location.viewValue}}</span>

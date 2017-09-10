@@ -1,9 +1,9 @@
-<div class="job-detail-content" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap="wrap">
-<div class="card-container" fxFlex.gt-sm="33.33%" fxFlex.gt-xs="50" fxFlex="100">
-   <button (click)="this.location.back()" color="primary" fxLayoutAlign="center center" md-raised-button>
+<div *ngIf="job" class="job-detail-wrapper" fxLayout="column" fxLayoutAlign="center center" fxLayoutWrap="wrap">
+<div class="mt-2 ml-1 mr-1">
+   <button class="mb-1" (click)="this.location.back()" color="primary" fxLayoutAlign="center center" md-raised-button>
                         <span fxLayoutAlign="start center" class="text-xs-center"> <md-icon>navigate_before</md-icon> Back </span>
    </button>
-    <md-card>
+    <md-card class="mt-1">
       <md-card-header>
                 <md-card-title> {{ job.title }} </md-card-title>
                 </md-card-header>
@@ -33,42 +33,6 @@
                      {{ value }}
                     </button>
                 </md-card-actions>
-      <!-- <md-card-content class="text-xs-center">
-        <div fxLayout="row"  fxLayoutAlign="center center" class="mt-1">
-          <div fxFlex>
-            <button md-icon-button>
-              <md-icon>email</md-icon>
-            </button>
-          </div>
-          <div fxFlex>
-            <img src="../../../../assets/images/temporary-logo.jpg" class="radius-circle">
-          </div>
-          <div fxFlex>
-            <button md-icon-button>
-              <md-icon>phone</md-icon>
-            </button>
-          </div>
-        </div>
-        <p class="mb-1">
-          <a href="" class="block text-lg">Michael Obrien</a>
-          <span class="mat-text-muted">London, UK</span>
-        </p>
-
-        <div fxLayout="row"  fxLayoutWrap="wrap" class="mt-1 text-uppercase">
-          <div fxFlex="33.33%">
-            <h2 class="mt-0 mb-0">89</h2>
-            <p class="mt-0 mb-0 text-md mat-text-muted">Photos</p>
-          </div>
-          <div fxFlex="33.33%">
-            <h2 class="mt-0 mb-0">354</h2>
-            <p class="mt-0 mb-0 text-md mat-text-muted">Followers</p>
-          </div>
-          <div fxFlex="33.33%">
-            <h2 class="mt-0 mb-0">945</h2>
-            <p class="mt-0 mb-0 text-md mat-text-muted">Following</p>
-          </div>
-        </div>
-      </md-card-content> -->
     </md-card>
   </div>
 </div>
