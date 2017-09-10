@@ -9,10 +9,15 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json --theme vagrant --hideGenerator",
+    "docs": "./node_modules/.bin/compodoc -s --port 4205",
+    "postinstall": "ng build"
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "^1.4.1",
+    "@angular/compiler-cli": "^4.2.4",
     "@angular/animations": "^4.3.6",
     "@angular/cdk": "^2.0.0-beta.8",
     "@angular/common": "^4.2.4",
