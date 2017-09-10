@@ -1,9 +1,11 @@
 ## Team The Ceaseless Salamanders
 ### Web applications with Angular" - Telerik Academy
 
-### [Plugging Away](https://pluggingaway.herokuapp.com/)
-### [YouTube showcase]()
-### [Trello](https://trello.com/b/2BUkxlsM/pluggingaway)
+### Links
+* [Plugging Away](https://pluggingaway.herokuapp.com/)
+* [YouTube showcase]()
+* [Trello](https://trello.com/b/2BUkxlsM/pluggingaway)
+
 ### Documentation
 Run `npm run compodoc` to execute the documentation generation.
 Run `npm run docs` for a docs server. Navigate to `http://localhost:4205/`.
