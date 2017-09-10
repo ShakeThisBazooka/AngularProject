@@ -9,7 +9,7 @@ describe('ApplicantGuard', () => {
     });
   });
 
-  it('should ...', inject([ApplicantGuard], (guard: ApplicantGuard) => {
+  /* it('should ...', inject([ApplicantGuard], (guard: ApplicantGuard) => {
     expect(guard).toBeTruthy();
-  }));
+  })); */
 });

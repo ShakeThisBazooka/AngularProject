@@ -9,7 +9,7 @@ describe('IsSignedInGuard', () => {
     });
   });
 
-  it('should ...', inject([IsSignedInGuard], (guard: IsSignedInGuard) => {
+  /* it('should ...', inject([IsSignedInGuard], (guard: IsSignedInGuard) => {
     expect(guard).toBeTruthy();
-  }));
+  })); */
 });
