@@ -54,7 +54,7 @@ export class ApplicantProfileComponent implements OnInit {
             data: (data !== undefined) ? data : null,
         }).afterClosed().subscribe((result: Applicant) => {
             if (result) {
-              console.log(result);
+              console.log("result", result);
                 this.applicantService.update(result).subscribe(
                     () => {
                         this.applicantService.getJobs(this.userService.getUserInfo().userId);

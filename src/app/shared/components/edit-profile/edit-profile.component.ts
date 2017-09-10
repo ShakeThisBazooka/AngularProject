@@ -3,6 +3,7 @@ import { Applicant } from '../../models/applicant';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Company } from '../../models/company';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-edit-profile',
@@ -11,21 +12,18 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 })
 export class EditProfileComponent implements OnInit {
 
-    public applicant: Applicant;
-    public company: Company;
+    public applicant: Applicant = undefined;
+    public company: Company = undefined;
     public applicantView: boolean;
     public applicantForm: FormGroup;
     public companyForm: FormGroup;
-
-    @Output()
-    public onApplicantSubmit: EventEmitter<Applicant> = new EventEmitter();
-    @Output()
-    public onCompanySubmit: EventEmitter<Company> = new EventEmitter();
   constructor(
-    public dialogRef: MdDialogRef<any>,
-                       @Optional() @Inject(MD_DIALOG_DATA) private data: any
-  ) {
-        this.company = data || new Company();
+    public dialogRef: MdDialogRef<Applicant | Company>,
+                       @Optional() @Inject(MD_DIALOG_DATA) private data: any,
+                       private userService: UserService
+                      ) {
+        this.userService.getUserInfo().role === 'applicant' ? this.applicant = data : this.company = data;
+        !this.applicant ? this.applicantView = false : this.applicantView = true;
          this.applicantForm = new FormGroup({
             firstName: new FormControl('', Validators.compose([Validators.required])),
             lastName: new FormControl('', Validators.compose([Validators.required]))
@@ -40,16 +38,14 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
   }
 
-  // public onSubmitApplicant(аpplicant) {
-  //       this.dialogRef.close(аpplicant);
-  //       this.applicant = new Applicant();
-  //       this.onApplicantSubmit.emit(аpplicant);
-  // }
+  public onSubmitApplicant(аpplicant) {
+        this.dialogRef.close(аpplicant);
+        this.applicant = new Applicant();
+  }
 
   public onSubmitCompany(company) {
         this.dialogRef.close(company);
         this.company = new Company();
-        this.onCompanySubmit.emit(company);
   }
 
 
