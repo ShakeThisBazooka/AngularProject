@@ -14,6 +14,7 @@ import { JobManipulationComponent } from './components/job-manipulation/job-mani
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { FullNamePipe } from './pipes/fullname.pipe';
 import { ShortenPipe } from './pipes/shorten.pipe';
+import { TitleUnderlineDirective } from './directives/title-underline.directive';
 
 
 
@@ -55,7 +56,8 @@ import { ShortenPipe } from './pipes/shorten.pipe';
     JobManipulationComponent,
     EditProfileComponent,
     FullNamePipe,
-    ShortenPipe
+    ShortenPipe,
+    TitleUnderlineDirective
   ],
   declarations: [
     DashboardComponent,
@@ -65,7 +67,8 @@ import { ShortenPipe } from './pipes/shorten.pipe';
     JobManipulationComponent,
     EditProfileComponent,
     FullNamePipe,
-    ShortenPipe
+    ShortenPipe,
+    TitleUnderlineDirective
   ]
 })
 export class SharedModule {
