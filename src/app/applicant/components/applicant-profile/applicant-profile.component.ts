@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplicantService } from '../../../shared/services/applicant.service';
+
 import { Applicant } from '../../../shared/models/applicant';
-import { UserService } from '../../../shared/services/user.service';
-import { Job } from '../../../shared/models/job';
-import { Router } from '@angular/router';
+import { ApplicantService } from '../../../shared/services/applicant.service';
 import { EditProfileComponent } from '../../../shared/components/edit-profile/edit-profile.component';
+import { Job } from '../../../shared/models/job';
 import { MdDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { UserService } from '../../../shared/services/user.service';
 
 @Component({
   selector: 'app-applicant-profile',
@@ -61,8 +62,4 @@ export class ApplicantProfileComponent implements OnInit {
             }
         });
   }
-
-
-
-
 }

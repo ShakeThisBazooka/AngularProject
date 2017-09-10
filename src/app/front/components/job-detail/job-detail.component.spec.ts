@@ -4,11 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Applicant } from '../../../shared/models/applicant';
 import { ApplicantService } from './../../../shared/services/applicant.service';
 import { ApplicantServiceMock } from './mocks/ApplicantServiceMock';
+import { By } from '@angular/platform-browser';
 import { FrontModule } from '../../front.module';
 import { Job } from '../../../shared/models/job';
 import { JobDetailComponent } from './job-detail.component';
 import { JobService } from './../../../shared/services/job.service';
-import { JobServiceMock } from './../../../company/components/job-applicants/mocks/JobServiceMock';
+import { JobServiceMock } from './mocks/JobServiceMock';
 import { Location } from '@angular/common';
 import { LocationMock } from './mocks/LocationMock';
 import { Observable } from 'rxjs/Observable';
@@ -75,11 +76,35 @@ describe('JobDetailComponent', () => {
     job.applicants = applicants;
 
     expect(component.job.applicants.length).toEqual(job.applicants.length);
+    expect(component.job._id).toEqual(job._id);
+    expect(component.job.benefits).toEqual(job.benefits);
   });
 
   it('should set proper value to isSameCompany', () => {
     component.getJob('1');
 
-    expect(component.isCompanyJob).toEqual(true);
+    expect(component.isCompanyJob).toEqual(false);
+  });
+
+  it('should set proper job title to html', () => {
+    component.getJob('1');
+
+    const title = fixture.debugElement.query(By.css('md-card-title'));
+    const el: HTMLElement = title.nativeElement;
+
+    expect(el.innerText).toContain('title');
+  });
+
+  it('should set proper md-card-subtitle', () => {
+    component.getJob('1');
+
+    const posted = fixture.debugElement.query(By.css('md-card-subtitle'));
+    const el: HTMLElement = posted.nativeElement;
+
+    expect(el.innerText).toContain('Posted by: Centroida');
+  });
+
+  it('apply job detail should work correctly', () => {
+    component.applyJobDetail();
   });
 });

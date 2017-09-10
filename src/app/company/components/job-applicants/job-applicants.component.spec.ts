@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { Applicant } from '../../../shared/models/applicant';
 import { ApplicantService } from './../../../shared/services/applicant.service';
+import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { Company } from '../../../shared/models/company';
 import { CompanyModule } from './../../company.module';
@@ -77,5 +78,12 @@ describe('JobApplicantsComponent', () => {
 
     expect(component.applicants.includes(job.applicants[0]));
     expect(component.applicants.includes(job.applicants[1]));
+  });
+
+  it('expects html to have h3 with specific value', () => {
+    const h3 = fixture.debugElement.query(By.css('h3'));
+    const el: HTMLElement = h3.nativeElement;
+
+    expect(el.innerText).toContain('Applicants');
   });
 });

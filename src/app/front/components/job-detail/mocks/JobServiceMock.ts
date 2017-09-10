@@ -21,6 +21,7 @@ export class JobServiceMock {
 
         const job: Job = new Job();
         job._id = id;
+        job.title = 'title';
         job.companyId = '123';
         job.benefits = 'benefits';
         job.description = 'desc';

@@ -28,28 +28,23 @@ export class JobDetailComponent implements OnInit {
 
     if (this.userService.getUserInfo().role === 'applicant') {
       this.value = 'Apply';
-    } else {
       this.route.params.subscribe((params) => {
-        this.getJob(params['_value'].id);
+        this.jobId = params['id'];
+        this.getJob(params['id']);
       });
-    }
-      this.route.params.subscribe((params) => {
-        console.log(params.id);
-            this.jobId = params['id'];
-            this.getJob(params['id']);
-        });
 
+    }
   }
 
-    public applyJobDetail() {
-      if (this.userService.getUserInfo().userId !== undefined) {
-        this.applicantService.apply(this.userService.getUserInfo().userId, this.jobId)
-          .subscribe((res) => {
-          });
-      }
+  public applyJobDetail() {
+    if (this.userService.getUserInfo().userId !== undefined) {
+      this.applicantService.apply(this.userService.getUserInfo().userId, this.jobId)
+        .subscribe((res) => {
+        });
     }
+  }
 
-    public getJob(id: string) {
+  public getJob(id: string) {
     this.jobService.getOne(id)
       .subscribe((job: Job) => {
         this.job = job;
