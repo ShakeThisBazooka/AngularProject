@@ -45,6 +45,9 @@ export class ProfileDataComponent implements OnInit {
   @Output()
   public onEditJob: EventEmitter<string> = new EventEmitter();
 
+  @Output()
+  public onDeactivateProfile: EventEmitter<boolean> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {

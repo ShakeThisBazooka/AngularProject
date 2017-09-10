@@ -2,10 +2,10 @@
         <md-card-content fxFlex="25">
           <div fxLayout="row">
             <div fxFlex="55">
-              <h1 *ngIf="isApplicant" class="ma-0">{{user.firstName}} <b>{{user.lastName}}</b></h1>
-              <h1 *ngIf="!isApplicant" class="ma-0">{{user.name}} <b></b></h1>
+              <h1 *ngIf="isApplicant" class="ma-0">{{user | fullName}}</h1>
+              <h1 *ngIf="!isApplicant" class="ma-0">{{user.name}}</h1>
               <small>{{ userInfo.email }}</small>
-              <button md-raised-button color="primary">Edit Profile</button>
+              <button (click)="onEditProfile.emit(user)" md-raised-button color="primary">Edit Profile</button>
             </div>
             <div fxFlex="60">
               <figure>

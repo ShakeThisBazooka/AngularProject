@@ -6,7 +6,8 @@ import { Job } from '../../../shared/models/job';
 import { MdDialog } from '@angular/material';
 import 'rxjs/add/operator/map';
 import { JobManipulationComponent } from '../../../shared/components/job-manipulation/job-manipulation.component';
-
+import { Router } from "@angular/router";
+import { EditProfileComponent } from "../../../shared/components/edit-profile/edit-profile.component";
 @Component({
   selector: 'app-company-profile',
   templateUrl: './company-profile.component.html',
@@ -20,7 +21,8 @@ export class CompanyProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private companyService: CompanyService,
-    private dialog: MdDialog
+    private dialog: MdDialog,
+    private router: Router
   ) {
     this.getCompany(this.userService.getUserInfo().userId);
     this.getJobs(this.userService.getUserInfo().userId);
@@ -81,11 +83,35 @@ export class CompanyProfileComponent implements OnInit {
         });
   }
 
+  public editProfile(data) {
+    this.dialog.open(EditProfileComponent, {
+      height: 'auto',
+      width: '400px',
+      data: (data !== undefined) ? data : null,
+    }).afterClosed().subscribe((result: Company) => {
+      if (result) {
+        console.log(result);
+        this.companyService.update(result).subscribe(
+          () => {
+            console.log('done');
+          });
+      }
+    });
+  }
+
   public deleteJob(id: string) {
     this.companyService.deleteJob(this.userService.getUserInfo().userId, id)
       .subscribe((res) => {
         console.log('delete job', res);
         this.getJobs(this.userService.getUserInfo().userId);
       });
+  }
+
+  public deleteCompany(isSure: boolean) {
+      this.companyService.delete(this.userService.getUserInfo().userId)
+          .subscribe(() => {
+            this.router.navigateByUrl('home');
+            this.userService.logout();
+          });
   }
 }

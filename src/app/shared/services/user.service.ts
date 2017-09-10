@@ -52,6 +52,6 @@ export class UserService {
       localStorage.removeItem('user_id');
       localStorage.removeItem('user_info');
       localStorage.removeItem('user_email');
-      return localStorage.removeItem('access_token');
+      localStorage.removeItem('access_token');
   }
 }

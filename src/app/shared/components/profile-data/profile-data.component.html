@@ -1,17 +1,16 @@
-<div *ngIf="dataSource && jobsCount > 0">
-    <md-toolbar *ngIf="!applicantView" color="primary">
+<div>
+    <md-toolbar color="primary">
         <span fxFlex="1 1 auto"></span>
-        <button md-raised-button (click)="onAddJob.emit(row)" color="accent" class="mr-1">
+        <button *ngIf="!applicantView" md-raised-button (click)="onAddJob.emit(row)" color="accent" class="mr-1">
             <md-icon class="md-24">add</md-icon>
             Add Job
         </button>
+        <button md-raised-button (click)="onDeactivateProfile.emit(true)" color="warn" class="mr-1">
+            Deactivate profile
+        </button>
     </md-toolbar>
     <md-card>
-        <md-table #table class="table table-hover table-mc-indigo " [dataSource]="dataSource">
-            <!-- <ng-container  cdkColumnDef="Nr.">
-                <md-header-cell  *cdkHeaderCellDef > Nr. </md-header-cell>
-                <md-cell *cdkCellDef="let row" > {{ row.counter }}</md-cell>
-            </ng-container> -->
+        <md-table *ngIf="dataSource && jobsCount > 0" #table class="table table-hover table-mc-indigo " [dataSource]="dataSource">
             <ng-container cdkColumnDef="Title">
                 <md-header-cell *cdkHeaderCellDef > Title </md-header-cell>
                 <md-cell  *cdkCellDef="let row" > {{ row.title }}</md-cell>
@@ -61,11 +60,6 @@
             <md-row routerLink="{{navigate + row._id}}"
                     *cdkRowDef="let row; columns: displayedColumns;"></md-row>
         </md-table>
-        <!-- <div fxLayout="row" fxLayoutAlign="end center">
-            <md-paginator #paginator (page)="onPageChange.emit($event)" [length]="length" [pageSize]="pageSize"
-                          [pageSizeOptions]="[5, 10, 25]">
-            </md-paginator>
-        </div> -->
 
     </md-card>
 </div>

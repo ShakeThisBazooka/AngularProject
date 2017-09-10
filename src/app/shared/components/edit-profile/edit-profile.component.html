@@ -1,0 +1,60 @@
+<div fxLayout="column" fxLayoutAlign="start center">
+  <h1 md-dialog-title>
+    <div>Edit profile</div>
+    <span fxFlex=""></span>
+  </h1>
+  <form *ngIf="applicantView" [formGroup]="applicantForm" fxFlexFill fxLayout="column" fxLayoutGap="10px">
+    <md-input-container fxFlex="nogrow">
+      <input mdInput id="dialogFirstName" placeholder="First name" formControlName="firstName" maxlength="250" [(ngModel)]="applicant.firstName">
+      <md-error *ngIf="form.controls['firstName'].hasError('required') && form.controls['firstName'].touched">
+        Please specify first name.
+      </md-error>
+    </md-input-container>
+    <md-input-container fxFlex="nogrow">
+      <input mdInput placeholder="Last name" formControlName="lastName" [(ngModel)]="applicant.lastName">
+      <md-error *ngIf="form.controls['lastName'].hasError('required') && form.controls['lastName'].touched">
+        Please specify last name.
+      </md-error>
+    </md-input-container>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <button md-raised-button color="primary" (click)="onSubmitApplicant(applicant)" [disabled]="!applicantForm.valid" fxFlex>
+                Update
+              </button>
+      <button md-raised-button color="warn" (click)="dialogRef.close()" fxFlex>
+                Cancel
+              </button>
+    </div>
+  </form>
+   <form *ngIf="!applicantView" [formGroup]="companyForm" fxFlexFill fxLayout="column" fxLayoutGap="10px">
+    <md-input-container fxFlex="nogrow">
+      <input mdInput id="dialogName" placeholder="Name" formControlName="name" maxlength="250" [(ngModel)]="company.name">
+      <md-error *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched">
+        Please specify name.
+      </md-error>
+    </md-input-container>
+    <md-input-container fxFlex="nogrow">
+      <input mdInput placeholder="VAT" formControlName="vat" [(ngModel)]="company.vat">
+      <md-error *ngIf="form.controls['vat'].hasError('required') && form.controls['vat'].touched">
+        Please specify VAT.
+      </md-error>
+    </md-input-container>
+    <md-input-container fxFlex="nogrow">
+      <input mdInput placeholder="Field" formControlName="field" [(ngModel)]="company.field">
+      <md-error *ngIf="form.controls['vat'].hasError('required') && form.controls['vat'].touched">
+        Please specify field.
+      </md-error>
+    </md-input-container>
+
+
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <button md-raised-button color="primary" (click)="onSubmitCompany(company)" [disabled]="!companyForm.valid" fxFlex>
+                Update
+            </button>
+      <button md-raised-button color="warn" (click)="dialogRef.close()" fxFlex>
+                Cancel
+            </button>
+    </div>
+  </form> 
+
+
+</div>
