@@ -3,13 +3,14 @@
 
 ### Links
 * [Plugging Away](https://pluggingaway.herokuapp.com/)
-* [YouTube showcase]()
+* [Documentation](https://pluggingawaydocs.herokuapp.com/)
 * [Trello](https://trello.com/b/2BUkxlsM/pluggingaway)
 
 ### Documentation
 Run `npm run compodoc` to execute the documentation generation.
 Run `npm run docs` for a docs server. Navigate to `http://localhost:4205/`.
 The documentation will not automatically update itself if you change any of the source files.
+
 ### Tests
 Run `ng test` to execute the tests.
 
@@ -47,7 +48,7 @@ Your Web application should include the following:
 - Unit test at **least 2 components**. &#10003;
 - Integration test at **least 1 module**. &#10003;
 - Implement responsive UI using Bootstrap 3 or 4, or Materialize. &#10003;
-- Your project should pass the default TS linting configuration without any errors.
+- Your project should pass the default TS linting configuration without any errors. &#10003;
 - You can use Angular CLI, Webpack, SystemJS or any other module loader/bundler. &#10003;
 - Your application should compile, work and produce an adequate result. &#10003;
     - Applications that do not adhere to these requirements, will be severely penalized or not accepted at all.
