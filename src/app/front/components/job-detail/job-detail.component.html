@@ -5,31 +5,24 @@
    </button>
     <md-card>
       <md-card-header>
-                <md-card-title> JavaScript Engineer </md-card-title>
+                <md-card-title> {{ job.title }} </md-card-title>
                 </md-card-header>
                 <hr>
                 <md-card-content>
                   <b> About us </b><br>
-                  Centroida is experienced in dealing with all stages of development - planning, implementation, stabilization and release. Our clients come from very different industries - from fitness to renewable energy.
+                  {{ job.companyInfo }}
                 </md-card-content>
                 <md-card-content>
                   <b> Description </b><br>
-                  A JavaScript developer is responsible for
-                    implementing the front-end logic that defines the behavior of the visual elements
-                    of a web application.
+                  {{ job.description }}
                   </md-card-content>
                   <md-card-content>
                     <b> Requirements </b><br>
-                  • 2+ years of experience using JavaScript <br>
-                  • 3+ months of experience using Angular (versions 2.x and above)<br>
-                  • Excellent knowledge and skills in OOP<br>
-                  • Good knowledge in HTML, CSS and jQuery
+                   {{ job.requirements }}
                 </md-card-content>
                 <md-card-content>
                   <b> Benefits </b><br>
-                  • This is a full-time position that comes with an excellent salary and an opportunity to grow within the company based on demonstrated merit. 
-                  <br>• Flexible working hours and no overtime. 
-                  <br>• Additional health insurance that guarantees fast access to contracted health services.
+                  {{ job.benefits }}
                 </md-card-content>
                 <md-card-subtitle>
                   Posted by: Centroida

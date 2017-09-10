@@ -15,7 +15,7 @@ import { UserService } from './../../../shared/services/user.service';
 })
 export class JobDetailComponent implements OnInit {
 
-  private job;
+  public job: Job;
   public value: string;
   public isCompanyJob: boolean;
 
@@ -30,7 +30,6 @@ export class JobDetailComponent implements OnInit {
     } else {
       const jobId = this.route.params['_value'].id;
       this.getJob(jobId);
-
     }
   }
 
@@ -41,7 +40,6 @@ export class JobDetailComponent implements OnInit {
       if (userId !== undefined) {
         this.applicantService.apply(userId, jobId)
           .subscribe((res) => {
-            console.log("apply res", res);
           });
       }
     }
