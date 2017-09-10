@@ -16,7 +16,7 @@ import { ApplicantService } from '../../services/applicant.service';
 })
 export class ProfileInfoComponent implements OnInit {
 
-  @Input() public user: Applicant | Company;
+  @Input() public user: Company;
   public isApplicant = false;
   public userInfo: UserInfo;
 

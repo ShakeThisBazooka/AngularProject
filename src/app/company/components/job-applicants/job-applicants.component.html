@@ -1,8 +1,15 @@
 <div class="wrapper" fxLayout="row" fxLayoutWrap="wrap" fxFlexFill>
   <div fxFlex.gt-sm="25" fxFlex="100" fxFlexFill>
-      <app-profile-info [user]="company"></app-profile-info>
+    <app-profile-info [user]="company"></app-profile-info>
   </div>
   <div fxFlex.gt-sm="75" fxFlex="100">
-    SHOULD DISPLAY APPLICANTS OF THIS JOB
+    <md-list>
+      <h3 md-subheader>Applicants</h3>
+      <md-list-item *ngFor="let applicant of applicants">
+        <h4 md-line>{{ applicant | fullName }}</h4>
+        <!-- <p md-line> {{folder.updated | date}} </p> -->
+      </md-list-item>
+      <md-divider></md-divider>
+    </md-list>
   </div>
 </div>

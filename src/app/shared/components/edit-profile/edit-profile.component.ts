@@ -25,14 +25,7 @@ export class EditProfileComponent implements OnInit {
     public dialogRef: MdDialogRef<any>,
                        @Optional() @Inject(MD_DIALOG_DATA) private data: any
   ) {
-        (data instanceof Applicant) ? this.applicantView = false : this.applicantView = true;
-        this.applicant = data || new Applicant();
         this.company = data || new Company();
-        if (this.applicantView) {
-          this.applicant = data || new Applicant();
-        } else {
-          this.company = data || new Company();
-        }
          this.applicantForm = new FormGroup({
             firstName: new FormControl('', Validators.compose([Validators.required])),
             lastName: new FormControl('', Validators.compose([Validators.required]))
@@ -47,11 +40,11 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
   }
 
-  public onSubmitApplicant(аpplicant) {
-        this.dialogRef.close(аpplicant);
-        this.applicant = new Applicant();
-        this.onApplicantSubmit.emit(аpplicant);
-  }
+  // public onSubmitApplicant(аpplicant) {
+  //       this.dialogRef.close(аpplicant);
+  //       this.applicant = new Applicant();
+  //       this.onApplicantSubmit.emit(аpplicant);
+  // }
 
   public onSubmitCompany(company) {
         this.dialogRef.close(company);

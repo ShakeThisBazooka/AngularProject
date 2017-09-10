@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Company } from '../../../shared/models/company';
 import { CompanyService } from '../../../shared/services/company.service';
 import { UserService } from "../../../shared/services/user.service";
+import { JobService } from "../../../shared/services/job.service";
+import { Applicant } from "../../../shared/models/applicant";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-job-applicants',
@@ -11,11 +14,17 @@ import { UserService } from "../../../shared/services/user.service";
 export class JobApplicantsComponent implements OnInit {
 
   public company: Company;
+  public applicants: Applicant[];
   constructor(
     public companyService: CompanyService,
-    public userService: UserService
+    public userService: UserService,
+    public jobService: JobService,
+    public route: ActivatedRoute
   ) {
     this.getCompany(this.userService.getUserInfo().userId);
+    this.route.params.subscribe((params) => {
+            this.getApplicantsOfJob(params['id']);
+        });
    }
 
   ngOnInit() {
@@ -26,6 +35,14 @@ export class JobApplicantsComponent implements OnInit {
         .subscribe((company: Company) => {
           this.company = company;
         });
+  }
+
+  public getApplicantsOfJob(id: string) {
+    this.jobService.getOne(id)
+      .map((res) => res.applicants)
+      .subscribe((applicants: Applicant[]) => {
+        this.applicants = applicants;
+      });
   }
 
 }

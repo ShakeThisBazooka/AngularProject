@@ -3,7 +3,7 @@
     <div>Edit profile</div>
     <span fxFlex=""></span>
   </h1>
-  <form *ngIf="applicantView" [formGroup]="applicantForm" fxFlexFill fxLayout="column" fxLayoutGap="10px">
+  <!-- <form *ngIf="applicantView" [formGroup]="applicantForm" fxFlexFill fxLayout="column" fxLayoutGap="10px">
     <md-input-container fxFlex="nogrow">
       <input mdInput id="dialogFirstName" placeholder="First name" formControlName="firstName" maxlength="250" [(ngModel)]="applicant.firstName">
       <md-error *ngIf="form.controls['firstName'].hasError('required') && form.controls['firstName'].touched">
@@ -24,8 +24,8 @@
                 Cancel
               </button>
     </div>
-  </form>
-   <form *ngIf="!applicantView" [formGroup]="companyForm" fxFlexFill fxLayout="column" fxLayoutGap="10px">
+  </form> -->
+   <form [formGroup]="companyForm" fxFlexFill fxLayout="column" fxLayoutGap="10px">
     <md-input-container fxFlex="nogrow">
       <input mdInput id="dialogName" placeholder="Name" formControlName="name" maxlength="250" [(ngModel)]="company.name">
       <md-error *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched">
