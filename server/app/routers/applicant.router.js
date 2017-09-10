@@ -7,8 +7,8 @@ const attachTo = (app, {applicantController}) => {
     app.get('/api/applicant/:id', ensureToken, applicantController.getById);
     app.get('/api/applicant/:id/jobs', ensureToken, applicantController.getJobs);
     app.post('/api/applicant', applicantController.createApplicant);
-    app.post('/api/applicant/:aid/apply/:jid', applicantController.addJobToApplicant);
-    app.put('/api/applicant/:id', applicantController.updateApplicant);
+    app.post('/api/applicant/:aid/apply/:jid', ensureToken, applicantController.addJobToApplicant);
+    app.put('/api/applicant/:id', ensureToken, applicantController.updateApplicant);
     app.delete('/api/applicant/:id',ensureToken, applicantController.deleteApplicant);
   };
 
