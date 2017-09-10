@@ -1,5 +1,5 @@
-## Team The Ceaseless Salamanders
-### Web applications with Angular" - Telerik Academy
+## Team `The Ceaseless Salamanders`
+### Web applications with Angular - Telerik Academy
 
 ### Links
 * [Plugging Away](https://pluggingaway.herokuapp.com/)
