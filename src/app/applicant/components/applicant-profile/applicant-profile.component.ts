@@ -35,7 +35,6 @@ export class ApplicantProfileComponent implements OnInit {
         .subscribe((applicant: Applicant) => {
             this.applicant = applicant;
             this.jobs = applicant.jobs;
-            console.log(applicant.jobs);
             this.jobsCount = this.jobs.length;
       });
   }

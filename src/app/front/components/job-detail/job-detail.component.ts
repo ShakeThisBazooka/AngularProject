@@ -29,11 +29,10 @@ export class JobDetailComponent implements OnInit {
     if (this.userService.getUserInfo().role === 'applicant') {
       this.value = 'Apply';
     }
-    this.route.params.subscribe((params) => {
-      console.log(params.id);
-      this.jobId = params['id'];
-      this.getJob(params['id']);
-    });
+      this.route.params.subscribe((params) => {
+            this.jobId = params['id'];
+            this.getJob(params['id']);
+        });
 
   }
 

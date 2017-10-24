@@ -77,7 +77,6 @@ export class CompanyProfileComponent implements OnInit {
             data: (data !== undefined) ? data : null,
         }).afterClosed().subscribe((result: Job) => {
             if (result) {
-              console.log(result);
                 this.companyService.updateJob(result).subscribe(
                     () => {
                         this.getJobs(this.userService.getUserInfo().userId);
@@ -93,10 +92,8 @@ export class CompanyProfileComponent implements OnInit {
       data: (data !== undefined) ? data : null,
     }).afterClosed().subscribe((result: Company) => {
       if (result) {
-        console.log(result);
         this.companyService.update(result).subscribe(
           () => {
-            console.log('done');
           });
       }
     });
@@ -105,7 +102,6 @@ export class CompanyProfileComponent implements OnInit {
   public deleteJob(id: string) {
     this.companyService.deleteJob(this.userService.getUserInfo().userId, id)
       .subscribe((res) => {
-        console.log('delete job', res);
         this.getJobs(this.userService.getUserInfo().userId);
       });
   }

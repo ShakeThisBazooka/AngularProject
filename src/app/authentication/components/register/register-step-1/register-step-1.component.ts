@@ -31,7 +31,6 @@ export class RegisterStep1Component implements OnInit {
   onSubmit() {
     this.userService.register(this.user)
         .subscribe((user: User) => {
-          console.log('Successfully registered!');
           this.onUserRegistered.emit(user);
         });
   }
