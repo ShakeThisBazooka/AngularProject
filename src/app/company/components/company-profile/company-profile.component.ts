@@ -6,8 +6,8 @@ import { Job } from '../../../shared/models/job';
 import { MdDialog } from '@angular/material';
 import 'rxjs/add/operator/map';
 import { JobManipulationComponent } from '../../../shared/components/job-manipulation/job-manipulation.component';
-import { Router } from "@angular/router";
-import { EditProfileComponent } from "../../../shared/components/edit-profile/edit-profile.component";
+import { Router } from '@angular/router';
+import { EditProfileComponent } from '../../../shared/components/edit-profile/edit-profile.component';
 @Component({
   selector: 'app-company-profile',
   templateUrl: './company-profile.component.html',

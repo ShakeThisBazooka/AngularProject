@@ -20,7 +20,7 @@ export class JobDetailComponent implements OnInit {
   public isCompanyJob: boolean;
   public jobId: string;
 
-  constructor(private location: Location, private applicantService: ApplicantService,
+  constructor(public location: Location, private applicantService: ApplicantService,
     private userService: UserService, private route: ActivatedRoute,
     private jobService: JobService) { }
 

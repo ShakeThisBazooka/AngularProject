@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/partial/header/header.component';
-import { MdToolbarModule, MdSidenavModule, MdMenuModule, MdInputModule, MdButtonModule, MdIconModule, MdSelectModule, MdCardModule, MdTooltipModule, MaterialModule, MdPaginator, MdTableModule, MdDialogModule, MdListModule, MdButtonToggleModule, MdTabsModule, MdPaginatorModule } from '@angular/material';
+import { MdToolbarModule, MdSidenavModule,
+  MdMenuModule, MdInputModule, MdButtonModule,
+  MdIconModule, MdSelectModule, MdCardModule, MdTooltipModule,
+  MaterialModule, MdPaginator, MdTableModule, MdDialogModule,
+  MdListModule, MdButtonToggleModule, MdTabsModule, MdPaginatorModule } from '@angular/material';
 import { Md2Module } from 'md2';
 import { DashboardComponent } from '../shared/dashboard.component';
 import { FlexLayoutModule } from '@angular/flex-layout';

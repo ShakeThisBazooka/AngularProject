@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../../../shared/models/company';
 import { CompanyService } from '../../../shared/services/company.service';
-import { UserService } from "../../../shared/services/user.service";
-import { JobService } from "../../../shared/services/job.service";
-import { Applicant } from "../../../shared/models/applicant";
-import { ActivatedRoute } from "@angular/router";
+import { UserService } from '../../../shared/services/user.service';
+import { JobService } from '../../../shared/services/job.service';
+import { Applicant } from '../../../shared/models/applicant';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-job-applicants',
