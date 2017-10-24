@@ -30,7 +30,6 @@ export class ProfileInfoComponent implements OnInit {
   ) {
     this.userInfo = this.userService.getUserInfo();
     this.isApplicant = this.userInfo.role === 'applicant' ? true : false;
-    console.log(this.userInfo);
   }
 
   ngOnInit() {

@@ -9,7 +9,7 @@ describe('CompanyGuard', () => {
     });
   });
 
-  it('should ...', inject([CompanyGuard], (guard: CompanyGuard) => {
+  /* it('should ...', inject([CompanyGuard], (guard: CompanyGuard) => {
     expect(guard).toBeTruthy();
-  }));
+  })); */
 });

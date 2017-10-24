@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Company } from '../../../shared/models/company';
-import { UserService } from '../../../shared/services/user.service';
-import { CompanyService } from '../../../shared/services/company.service';
-import { Job } from '../../../shared/models/job';
-import { MdDialog } from '@angular/material';
 import 'rxjs/add/operator/map';
-import { JobManipulationComponent } from '../../../shared/components/job-manipulation/job-manipulation.component';
-import { Router } from '@angular/router';
+
+import { Component, OnInit } from '@angular/core';
+
+import { Company } from '../../../shared/models/company';
+import { CompanyService } from '../../../shared/services/company.service';
 import { EditProfileComponent } from '../../../shared/components/edit-profile/edit-profile.component';
+import { Job } from '../../../shared/models/job';
+import { JobManipulationComponent } from '../../../shared/components/job-manipulation/job-manipulation.component';
+import { MdDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { UserService } from '../../../shared/services/user.service';
+
 @Component({
   selector: 'app-company-profile',
   templateUrl: './company-profile.component.html',
@@ -74,7 +77,6 @@ export class CompanyProfileComponent implements OnInit {
             data: (data !== undefined) ? data : null,
         }).afterClosed().subscribe((result: Job) => {
             if (result) {
-              console.log(result);
                 this.companyService.updateJob(result).subscribe(
                     () => {
                         this.getJobs(this.userService.getUserInfo().userId);
@@ -90,10 +92,8 @@ export class CompanyProfileComponent implements OnInit {
       data: (data !== undefined) ? data : null,
     }).afterClosed().subscribe((result: Company) => {
       if (result) {
-        console.log(result);
         this.companyService.update(result).subscribe(
           () => {
-            console.log('done');
           });
       }
     });
@@ -102,7 +102,6 @@ export class CompanyProfileComponent implements OnInit {
   public deleteJob(id: string) {
     this.companyService.deleteJob(this.userService.getUserInfo().userId, id)
       .subscribe((res) => {
-        console.log('delete job', res);
         this.getJobs(this.userService.getUserInfo().userId);
       });
   }

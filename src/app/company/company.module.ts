@@ -1,22 +1,36 @@
-import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+   MaterialModule,
+   MdButtonModule,
+   MdButtonToggleModule,
+   MdCardModule,
+   MdDialogModule,
+   MdExpansionModule,
+   MdGridListModule,
+   MdIconModule,
+   MdInputModule,
+   MdListModule,
+   MdMenuModule,
+   MdPaginatorModule,
+   MdProgressBarModule,
+   MdSidenavModule,
+   MdTableModule,
+   MdTabsModule,
+   MdToolbarModule,
+   MdTooltipModule
+} from '@angular/material';
+
+import { CdkTableModule } from '@angular/cdk';
 import { CommonModule } from '@angular/common';
-import { companyRouting } from './company.routes';
-import { SharedModule } from '../shared/shared.module';
 import { CompanyGuard } from './guards/company.guard';
 import { CompanyProfileComponent } from './components/company-profile/company-profile.component';
-import { MdToolbarModule, MdIconModule, MdCardModule,
-  MdInputModule, MdButtonModule, MdButtonToggleModule,
-  MdListModule, MdGridListModule, MdMenuModule,
-  MdSidenavModule, MdProgressBarModule, MdTabsModule,
-  MdDialogModule, MdExpansionModule, MaterialModule,
-  MdTooltipModule, MdTableModule, MdPaginatorModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule } from '@angular/router';
-import { Md2Module } from 'md2';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CdkTableModule } from '@angular/cdk';
 import { JobApplicantsComponent } from './components/job-applicants/job-applicants.component';
-
+import { Md2Module } from 'md2';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
+import { companyRouting } from './company.routes';
 
 @NgModule({
   imports: [
