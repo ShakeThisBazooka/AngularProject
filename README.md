@@ -8,7 +8,7 @@
 
 ## Credentials
   #### Applicant: _iilcheva@centroida.co_ _123456q_
-  #### Company: _centroida@centroida.co _123456q_
+  #### Company: _centroida@centroida.co_ _123456q_
 
 ### Documentation
 Run `npm run compodoc` to execute the documentation generation.
