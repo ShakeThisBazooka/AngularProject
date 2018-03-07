@@ -6,6 +6,10 @@
 * [Documentation](https://pluggingawaydocs.herokuapp.com/)
 * [Trello](https://trello.com/b/2BUkxlsM/pluggingaway)
 
+## Credentials
+  #### Applicant: _iilcheva@centroida.co_ _123456q_
+  #### Company: _centroida@centroida.co _123456q_
+
 ### Documentation
 Run `npm run compodoc` to execute the documentation generation.
 Run `npm run docs` for a docs server. Navigate to `http://localhost:4205/`.
